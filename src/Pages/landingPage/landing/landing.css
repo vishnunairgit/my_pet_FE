@@ -1,0 +1,51 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    text-transform: capitalize;
+    
+}
+* {box-sizing: border-box}
+
+.landingPage
+{
+margin: 0%;
+padding: 0%;
+/* background-color: #1877f2; */
+
+}
+.landingPage .main {
+    display: flex;
+    justify-content:space-around;
+    flex-direction:row;
+    height: 100vh;
+    padding: 100px;
+    align-items: center;
+    
+}
+/* .landingPage.signupStyle .main {
+    padding: 100px;
+    align-items: center;
+} */
+
+  
+.landingPage .text-pet 
+{
+    font-size: 28px;
+    font-family: Helvetica, Arial, sans-serif;
+    display: block;
+    color: black;
+    
+}
+
+/* .landingPage .text-pet.pet-words 
+{
+    text-align: center;
+  padding: 70px 0;
+}  */
+
+
+
+.landingPage .rightside
+{
+display:inline-block;
+}
+
