@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 import "./login.css"
 import axios from 'axios'
 import { BASE_URL } from '../../../constants/BaseUrl'
+import { useNavigate } from 'react-router-dom'
+import { toastSucces } from '../../../constants/plugines'
+
+
+
 
 function Login({setloginsignup}) {
 
@@ -10,6 +15,8 @@ function Login({setloginsignup}) {
     email: '',
     password: '',
   })
+
+  const navigate=useNavigate()
 
   const handleLogin =()=>{
     setloginsignup('SignUp')
@@ -21,6 +28,19 @@ function Login({setloginsignup}) {
         //  axios.post(`${BASE_URL}/auth/signUp`,{email:loginData.email, password:loginData.password}).then((res)=>{
           axios.post(`${BASE_URL}/auth/Login`,loginData).then((res)=>{
           console.log(res);
+          if (res.data.message==="Login successful" && res.data.token){
+            // storing the tocken to local storage
+            localStorage.setItem('token',res.data.token)
+            navigate('/Home')
+          }
+          if (res.data.message==="Invalid user credentials") {
+            // toastSucces('Invalid user credentials')
+            alert('Invalid user credentials')
+          }
+          if (res.data.message==='Internal server error') {
+            alert('something went wrong')
+          }
+
             debugger
           })
       } 
@@ -66,7 +86,7 @@ function Login({setloginsignup}) {
           </div>
           <div>
             <div>
-              <span>Don't have an account? <a onClick={() => handleLogin()} style={{color:'blue', fontWeight:'600'}}>Sign up</a> </span>
+              <span>Don't have an account? <span onClick={() => handleLogin()} style={{color:'blue', fontWeight:'600'}}>Sign up</span> </span>
           </div>
        
         </div>
