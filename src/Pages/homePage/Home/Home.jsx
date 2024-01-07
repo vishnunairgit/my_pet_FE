@@ -29,7 +29,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import TopNavbar from '../TopNavbar/TopNavbar';
 import Sidenavbar from '../sideNavbar/Sidenavbar';
-import PetDog from '../../PetDog/PetDog';
+import PetDog from '../../PetDog/PetDog/PetDog';
 import './home.css'
 import PetCat from '../../PetCat/PetCat';
 import PetBired from '../../PetBired/PetBired';

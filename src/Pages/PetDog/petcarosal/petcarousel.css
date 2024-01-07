@@ -1,0 +1,10 @@
+.carousel-inner
+{
+    padding: 5px;
+    height:350px !important;
+}
+.carousel-inner img
+{
+height: 350px;
+border-radius: 7px;
+}
