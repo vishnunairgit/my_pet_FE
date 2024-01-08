@@ -18,8 +18,8 @@
 .sidenavitems button 
 {
     flex: 1;
-    width: 100%; /* Equal width for all buttons */
-    height:20%; /* Equal height for all buttons */
+    /* width: 100%; Equal width for all buttons */
+    /* height:14%;  */
     background-color: #555; /* Button background color */
     color: white;
     text-align: center;
