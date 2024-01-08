@@ -6,7 +6,7 @@ import PetCarousel from '../petcarosal/PetCarousel';
 
 function PetDog() {
   return (
-    <div>
+    <div style={{backgroundColor:"#8a7878"}}>
       <PetCarousel/>
       <PetCard/>
     </div>

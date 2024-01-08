@@ -1,29 +1,4 @@
-// import React from 'react'
-// import TopNavbar from '../TopNavbar/TopNavbar'
-// import Sidenavbar from '../sideNavbar/Sidenavbar'
-// import { Route, Routes } from 'react-router-dom'
-// import PetDog from '../../PetDog/PetDog'
 
-
-// function Home() {
-//   return (
-//     <>
-//     <div className=''>
-//       <TopNavbar/>
-//         <div className=''>
-//           <Sidenavbar/>
-//         </div>
-//         <div className=''>
-//         <Routes>
-//           <Route path="/PetDog" element={<PetDog />} />  
-//         </Routes>
-//     </div>
-//     </div>
-//     </>
-//   )
-// }
-
-// export default Home
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -36,6 +11,7 @@ import PetBired from '../../PetBired/PetBired';
 import PetFish from '../../PetFish/PetFish';
 import OtherPets from '../../OtherPet/OtherPets';
 import Accessories from '../../Accessories/Accessories';
+import AddPet from '../../Common/Add Pet/AddPet';
 
 const Home = () => {
   return (
@@ -51,6 +27,7 @@ const Home = () => {
           <Route path="/fish" element={<PetFish />} />
           <Route path="/otherPets" element={<OtherPets />} />
           <Route path="/accessories" element={<Accessories />} />
+          <Route path="/addpet" element={<AddPet/> }/>
           {/* Add more routes as needed */}
         </Routes>
       </div>

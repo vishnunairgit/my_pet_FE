@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Landing from "./Pages/landingPage/landing/Landing";
 import Home from "./Pages/homePage/Home/Home";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer/>
+      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing/> }/>

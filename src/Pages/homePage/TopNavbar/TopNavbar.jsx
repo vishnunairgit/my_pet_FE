@@ -9,7 +9,10 @@ function TopNavbar() {
   const navigate =useNavigate()
 
   const handleNavigateHome = ()=>{
-    navigate('/home')
+    navigate('/dog')
+  }
+  const handleAddPet =()=>{
+    navigate('/addpet')
   }
 
 
@@ -24,7 +27,7 @@ function TopNavbar() {
     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <div className="nav-link active" aria-current="page" onClick={handleNavigateHome}>Home</div>
+          <div className="nav-link active" aria-current="page" onClick={handleAddPet}>Add pet</div>
         </li>
         <li className="nav-item">
           <div className="nav-link" href="#">Link</div>

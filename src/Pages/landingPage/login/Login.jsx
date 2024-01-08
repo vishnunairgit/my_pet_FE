@@ -4,7 +4,7 @@ import "./login.css"
 import axios from 'axios'
 import { BASE_URL } from '../../../constants/BaseUrl'
 import { useNavigate } from 'react-router-dom'
-import { toastSucces } from '../../../constants/plugines'
+import { toastError, toastSucces } from '../../../constants/plugines'
 
 
 
@@ -31,11 +31,13 @@ function Login({setloginsignup}) {
           if (res.data.message==="Login successful" && res.data.token){
             // storing the tocken to local storage
             localStorage.setItem('token',res.data.token)
-            navigate('/Home')
+            navigate('/dog')
+            toastSucces('Login successful')
+
           }
           if (res.data.message==="Invalid user credentials") {
-            // toastSucces('Invalid user credentials')
-            alert('Invalid user credentials')
+            toastError('Invalid user credentials')
+            // alert('Invalid user credentials')
           }
           if (res.data.message==='Internal server error') {
             alert('something went wrong')
