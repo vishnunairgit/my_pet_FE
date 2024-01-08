@@ -1,14 +1,24 @@
 import React from "react";
+<<<<<<< HEAD
 import prtdogtestimf from "../Assets/dog-puppy-on-garden-royalty-free-image-1586966191.jpg";
 import petGromming from "../Assets/Untitled-design-60-1024x576.jpg"
 import petWalking from "../Assets/walker-ser-lft.jpg"
 import bookmydoctor from '../Assets/BookNowBarkAve.png'
+=======
+import dogAadoption from "../Assets/dog-puppy-on-garden-royalty-free-image-1586966191.jpg";
+import dogGromming from "../Assets/"
+>>>>>>> 95fbe53d0263a08dc80648e0b8adfd64f5a42382
 import './petCard.css';
 
 function PetCard() {
   return (
+<<<<<<< HEAD
     <div className="petCard">
       <div className="container mt-4">
+=======
+    <>
+      <div className="container mt-2">
+>>>>>>> 95fbe53d0263a08dc80648e0b8adfd64f5a42382
         <div className="row">
           {/* First Row */}
           <div className="col-md-6">
@@ -18,7 +28,7 @@ function PetCard() {
                 <div className="row g-0">
                   <div className="col-md-4">
                     <img
-                      src={prtdogtestimf}
+                      src={dogAadoption}
                       className="img-fluid rounded-start"
                       alt="..."
                     />
@@ -126,7 +136,11 @@ function PetCard() {
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
+<<<<<<< HEAD
                       <h5 className="card-title">Book an appointment</h5>
+=======
+                      <h5 className="card-title">booking an appointment</h5>
+>>>>>>> 95fbe53d0263a08dc80648e0b8adfd64f5a42382
                       <p className="card-text">
                         This is a wider card with supporting text below as a
                         natural lead-in to additional content. This content is a
