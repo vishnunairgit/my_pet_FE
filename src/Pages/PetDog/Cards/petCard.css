@@ -1,5 +1,15 @@
-.petCard .img-fluid
+.petcard .img-fluid
 {
     height: 190px;
+    width: 500px;
+    padding: 5px;
+    /* border-radius: 20px; */
+}
+.petcard-1
+{
+    display: flex;
     width: 100%;
+    justify-content: space-between;
+    padding: 5px 5px 0 5px;
+    /* margin: 5px; */
 }

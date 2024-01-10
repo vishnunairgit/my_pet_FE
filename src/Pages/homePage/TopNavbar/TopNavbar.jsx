@@ -2,11 +2,17 @@ import React from 'react'
 import userLogo from '../Asset/icons8-user-48.png'
 import './topnav.css'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+
+
 
 function TopNavbar() {
 
   
   const navigate =useNavigate()
+
+  const {userDetails}=useSelector((state)=>state.user)
 
   const handleNavigateHome = ()=>{
     navigate('/dog')
@@ -45,7 +51,13 @@ function TopNavbar() {
         <button className="btn btn-outline-primary" type="submit">Search</button>
         {/* <button className="btn btn-primary" type="submit">Search</button> */}
       </form>
-      <img src={userLogo} alt="" />
+      
+        <div>
+        {userDetails.name}
+        </div>
+      <img src={userLogo} alt="" /> 
+      
+      
       </div>
       
 

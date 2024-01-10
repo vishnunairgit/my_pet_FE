@@ -200,68 +200,6 @@ function AddPet() {
               </div>
             </div>
 
-           
-
-           
-
-
-           
-          
-
-            
-            {/* <div className="row">
-              <div className="col-25">
-                <label htmlFor="user">SELECT USER</label>
-              </div>
-              <div className="col-75">
-                <select
-                  id="user"
-                  name="user"
-                  onChange={(e) => {
-                    setoperatorID(e.target.value);
-                  }}
-                >
-                  <option value="australia">Select User</option>
-                  {filteredUser &&
-                    filteredUser.Operator.map((user) => (
-                      <option key={user.userID} value={user.userID}>
-                        {user.userID}
-                      </option>
-                    ))}
-                  {filteredUser &&
-                    sensorType === "RFID" &&
-                    filteredUser.Rfiduser.map((user) => (
-                      <option key={user.userID} value={user.userID}>
-                        {user.userID}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            </div> */}
-{/* 
-            <div className="row">
-              <div className="col-25">
-                <label htmlFor="viewer">SELECT VIEWER</label>
-              </div>
-              <div className="col-75">
-                <select
-                  id="viewer"
-                  name="viewer"
-                  onChange={(e) => {
-                    setAssignViewer(e.target.value);
-                  }}
-                >
-                  <option value="australia">Select Viewer</option>
-                  {filteredUser &&
-                    filteredUser.Viewer.map((user) => (
-                      <option key={user.userID} value={user.userID}>
-                        {user.userID}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            </div> */}
-
           </div>
 
           <div className="rightSide-container">

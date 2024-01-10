@@ -11,26 +11,39 @@ import { toastError, toastSucces } from '../../../constants/plugines'
 
 function Login({setloginsignup}) {
 
+  const navigate=useNavigate()
+
   const [loginData, setloginData] = useState({
     email: '',
     password: '',
   })
 
-  const navigate=useNavigate()
+ 
 
   const handleLogin =()=>{
     setloginsignup('SignUp')
   }
 
-   const handleUserLogin =()=>{
+  const handleUserLogin =()=>{
     try {
       if(loginData.email && loginData.password){
         //  axios.post(`${BASE_URL}/auth/signUp`,{email:loginData.email, password:loginData.password}).then((res)=>{
           axios.post(`${BASE_URL}/auth/Login`,loginData).then((res)=>{
           console.log(res);
-          if (res.data.message==="Login successful" && res.data.token){
+          if (res.data.message==="Login successful" && res.data.token ){
             // storing the tocken to local storage
-            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('token', res.data.token)
+
+           const  parsedToken = parseJwt(res.data.token)
+           console.log(parsedToken,'----lllll-----');
+
+
+          // if we pass the user dettails in the tocken.then follow this command
+              // localStorage.setItem('user', JSON.stringify(res.data.user) )
+              // console.log(res.data.user);
+          // once we convert the user dettils from jwt tockn 
+          localStorage.setItem('user', JSON.stringify(parsedToken) )
+          console.log(parsedToken);
             navigate('/dog')
             toastSucces('Login successful')
 
@@ -42,8 +55,7 @@ function Login({setloginsignup}) {
           if (res.data.message==='Internal server error') {
             alert('something went wrong')
           }
-
-            debugger
+            // debugger
           })
       } 
     } catch (error) {
@@ -51,7 +63,18 @@ function Login({setloginsignup}) {
       console.log(error);
     }
 
-   }
+  }
+// decoding user dettils and storing in the local storage
+  function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+  
 
 
 

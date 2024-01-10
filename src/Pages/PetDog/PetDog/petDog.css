@@ -1,4 +1,8 @@
-.PetDogText
-{
+.petDogmain{
+    width: 100%;
     
+}
+.petdogcard
+{
+    display: flex !important;
 }
