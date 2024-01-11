@@ -5,11 +5,18 @@ import axios from 'axios'
 import { BASE_URL } from '../../../constants/BaseUrl'
 import { useNavigate } from 'react-router-dom'
 import { toastError, toastSucces } from '../../../constants/plugines'
+import { useDispatch, useSelector } from 'react-redux'
+import { setuserDetails } from '../../../ToolKit/userSlice'
 
 
 
 
 function Login({setloginsignup}) {
+
+
+  const {userDetails}=useSelector((state)=>state.user)
+
+  const dispatch=useDispatch()
 
   const navigate=useNavigate()
 
@@ -18,7 +25,6 @@ function Login({setloginsignup}) {
     password: '',
   })
 
- 
 
   const handleLogin =()=>{
     setloginsignup('SignUp')
@@ -35,6 +41,9 @@ function Login({setloginsignup}) {
             localStorage.setItem('token', res.data.token)
 
            const  parsedToken = parseJwt(res.data.token)
+
+           dispatch(setuserDetails(parsedToken))
+
            console.log(parsedToken,'----lllll-----');
 
 

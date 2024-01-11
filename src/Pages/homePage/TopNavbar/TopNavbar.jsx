@@ -9,10 +9,10 @@ import { useSelector } from 'react-redux'
 
 function TopNavbar() {
 
-  
+  const {userDetails}=useSelector((state)=>state.user)
+
   const navigate =useNavigate()
 
-  const {userDetails}=useSelector((state)=>state.user)
 
   const handleNavigateHome = ()=>{
     navigate('/dog')
@@ -20,7 +20,7 @@ function TopNavbar() {
   const handleAddPet =()=>{
     navigate('/addpet')
   }
-
+  
 
   return (
     <div className='topnav'>
@@ -52,9 +52,7 @@ function TopNavbar() {
         {/* <button className="btn btn-primary" type="submit">Search</button> */}
       </form>
       
-        <div>
-        {userDetails.name}
-        </div>
+       <div>{userDetails.firstName}{userDetails.lastName}</div>
       <img src={userLogo} alt="" /> 
       
       
