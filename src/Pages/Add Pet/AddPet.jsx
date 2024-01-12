@@ -8,11 +8,29 @@ function AddPet() {
     
     const [petType, setpetType] = useState('')
     const [breeds, setbreeds] = useState([])
+    const [petThumbnails, setpetThumbnails] = useState('')
+    const [petImageUpload, setpetImageUpload] = useState('')
+    const [petvideoUpload, setpetvideoUpload] = useState('')
+    const [petPdfUpload, setpetPdfUpload] = useState('')
+
+
+    const [addPetForm, setaddPetForm] = useState({
+      petType:'',
+      petBreeds:'',
+      petName:'',
+      petDateofbirth:'',
+      petPrice:'',
+      petColour:'',
+      petThumb:null,
+      petImageUpload:null,
+    })
+  
 
 
     const handlePetTypeChanges = (e) => {
         const selectedPetType = e.target.value;;
         setpetType(selectedPetType);
+
 
         if (selectedPetType==='DOG') {
             setbreeds(['Labrador','Golden Retriever','Poodle','German Shepherd','Rottweiler','Husky','pomerainn'])
@@ -34,6 +52,47 @@ function AddPet() {
         }
     };
 
+
+  const onChange=(e)=>{
+    debugger
+    if (e.target.name==='petThumb') {
+      const file = e.target.files[0]
+      if (file) {
+      setpetThumbnails(URL?.createObjectURL(file)) 
+        
+      }
+    }
+    if (e.target.name==='petImageUpload') {
+      const file = e.target.files[0]
+      if (file) {
+        setpetImageUpload(URL?.createObjectURL(file))
+
+      }
+    }
+
+    if (e.target.name ==='petvideoUpload') {
+      const file = e.target.files[0]
+      if (file) {
+        setpetvideoUpload(URL.createObjectURL(file))
+      }
+    }
+    if (e.target.name === 'petPdfUpload') {
+      const file =e.target.files[0]
+      if (file) {
+        setpetPdfUpload(URL.createObjectURL(file))
+      }
+      
+    }
+
+
+
+    setaddPetForm({...addPetForm,[e.target.name]:e.target.value})
+
+  }
+
+
+
+
   return (
 
     <>
@@ -47,6 +106,10 @@ function AddPet() {
             <h2>ADD PET</h2>
             <div className="Tree-thumbnail">
               <div className="Tree-thumbnail-leftside">
+
+               { petThumbnails && <img src={petThumbnails} alt="" 
+                  style={{width:'100px', height:'100px'}}
+                  />}
                 {/* {treeImage ? (
                   <img
                     src={treeImage}
@@ -66,10 +129,11 @@ function AddPet() {
                 <label htmlFor="image">Upload Thumbnail</label>
                 <br/>
                 <input
+                name='petThumb'
                   type="file"
                   id="image"
                   accept="image/*"
-                //   onChange={handleImageChange}
+                  onChange={onChange}
                 />
               </div>
             </div>
@@ -80,13 +144,18 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <select
+                value={addPetForm.petType}
                   id="petType"
                   name="petType"
                   required
-                  onChange={handlePetTypeChanges}
-                //   onChange={(e) => {
-                //     setSensorType(e.target.value);
-                //   }}
+                  onChange={(e) => {
+                    handlePetTypeChanges(e);
+                    onChange(e);
+                  }}
+
+                  // onChange={handlePetTypeChanges}
+                 
+                
                 >
                   <option value="">Select Pet</option>
                   <option value="DOG">DOG</option>
@@ -104,12 +173,11 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <select
-                  id="breeds"
-                  name="breeds"
+                value={addPetForm.petBreeds}
+                  id="petBreeds"
+                  name="petBreeds"
                   required
-                //   onChange={(e) => {
-                //     setAssignSensor(e.target.value);
-                //   }}
+                  onChange={onChange}
                 >
                   <option value="">Select Breeds</option>
                   {breeds.map((breed) =>(
@@ -130,13 +198,12 @@ function AddPet() {
 
               <div className="col-75">
                 <input
+                value={addPetForm.petName}
                   type="text"
-                  id="name"
+                  id="petName"
                   name="name"
                   placeholder="Name.."
-                //   onChange={(e) => {
-                //     setDisplayID(e.target.value);
-                //   }}
+                  onChange={onChange}
                   required
                 />
                 <span> </span>
@@ -151,13 +218,13 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
+                value={addPetForm.petDateofbirth}
                   type="date"
-                  id="date of birth"
-                  name="date of birth"
+                  id="petDateofbirth"
+                  name="dateofbirth"
                   placeholder="date of birth.."
-                //   onChange={(e) => {
-                //     setassetType(e.target.value);
-                //   }}
+                  onChange={onChange}
+               
                   required
                 />
               </div>
@@ -171,16 +238,17 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
+                value={addPetForm.petPrice}
                   type="number"
-                  id="Price"
-                  name="Price"
+                  id="petPrice"
+                  name="petPrice"
                   placeholder="Price.."
-                //   onChange={(e) => {
-                //     setAccessionNumber(e.target.value);
-                //   }}
+                  onChange={onChange}
+
                 />
               </div>
             </div>
+
             <div className="row">
               <div className="col-25">
                 <label htmlFor="Colour ">
@@ -189,13 +257,14 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
+                value={addPetForm.petColour}
                   type="text"
-                  id="Colour "
-                  name="Colour "
+                  id="petColour "
+                  name="petColour "
                   placeholder="Colour.."
-                //   onChange={(e) => {
-                //     setAccessionNumber(e.target.value);
-                //   }}
+                  onChange={onChange}
+
+             
                 />
               </div>
             </div>
@@ -212,24 +281,29 @@ function AddPet() {
                 <input
                   type="file"
                   id="imageUpload"
-                  name="imageUpload"
+                  name="petImageUpload"
                   accept="image/*"
+                  onChange={onChange}
                 />
                 <br />
                 <label htmlFor="videoUpload">SELECT A VIDEOS</label>
                 <input
                   type="file"
                   id="videoUpload"
-                  name="videoUpload"
+                  name="petvideoUpload"
                   accept="video/*"
+                  onChange={onChange}
+
                 />
                 <br />
                 <label htmlFor="pdfUpload">SELECT A PDFS</label>
                 <input
                   type="file"
                   id="pdfUpload"
-                  name="pdfUpload"
+                  name="petPdfUpload"
                   accept="application/pdf"
+                  onChange={onChange}
+
                 />
                 <br />
                 {/* <label htmlFor="audioUpload">SELECT AN AUDIO FILES</label>
@@ -241,9 +315,18 @@ function AddPet() {
                 />
                 <br /> */}
               </div>
-            </div>
-          </div>
+
+           
+
+
+        
+
         </div>
+
+        </div>
+          </div>
+        
+
         {/* {error && <ErrorMessage message={error} />} */}
         <div className="buttonHolder">
           {/* <span><h3></h3></span> */}
@@ -269,9 +352,35 @@ function AddPet() {
             Cancel
           </button>
         </div>
+
+      
+
+
       </form>
+      <div style={{display:'flex', padding:'10px'}}>
+      { petImageUpload && <img src={petImageUpload} alt="" 
+              style={{width:'100px', height:'100px'}}
+              />}
+
+        { petvideoUpload && <video 
+            src={petvideoUpload}
+            controls
+            width='100'
+            height='100'
+            type='video/*'
+            /> }
+
+      { petPdfUpload &&  <iframe src={petPdfUpload} frameborder="0"
+            title='PDF Viewer'
+            width='100'
+            height='100'
+            />}
+      </div>
     </div>
     
+
+  
+
     </>
   
   )

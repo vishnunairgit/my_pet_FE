@@ -11,7 +11,7 @@ import PetBired from '../../PetBired/PetBired';
 import PetFish from '../../PetFish/PetFish';
 import OtherPets from '../../OtherPet/OtherPets';
 import Accessories from '../../Accessories/Accessories';
-import AddPet from '../../Common/Add Pet/AddPet';
+import AddPet from '../../Add Pet/AddPet';
 
 const Home = () => {
   return (
