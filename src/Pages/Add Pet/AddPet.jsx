@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import './addpet.css'
+import './addpet.css';
+import AxiosInstance from '../../config/AxiosInstance';
+
 
 
 
@@ -13,16 +15,24 @@ function AddPet() {
     const [petvideoUpload, setpetvideoUpload] = useState('')
     const [petPdfUpload, setpetPdfUpload] = useState('')
 
-
     const [addPetForm, setaddPetForm] = useState({
-      petType:'',
-      petBreeds:'',
-      petName:'',
-      petDateofbirth:'',
-      petPrice:'',
-      petColour:'',
+      petType: "",
+      petBreeds: "",
+      petGender: "",
+      petName: "",
+      petDateofbirth: "",
+      petPrice: "",
+      petColour: "",
+      
+      
+    })
+
+    const [petimage, setpetimage] = useState({
       petThumb:null,
       petImageUpload:null,
+      petvideoUpload:null,
+      petPdfUpload:null,
+
     })
   
 
@@ -53,53 +63,67 @@ function AddPet() {
     };
 
 
-  const onChange=(e)=>{
-    debugger
+  const onChange = (e) => {
+    // debugge
+      setaddPetForm({ ...addPetForm, [e.target.name]: e.target.value});
+    
+  };
+
+  const addPetFiles = (e)=>{
+
+    setpetimage(e.target.files[0])
+
     if (e.target.name==='petThumb') {
       const file = e.target.files[0]
       if (file) {
-      setpetThumbnails(URL?.createObjectURL(file)) 
-        
-      }
-    }
-    if (e.target.name==='petImageUpload') {
-      const file = e.target.files[0]
-      if (file) {
-        setpetImageUpload(URL?.createObjectURL(file))
-
+      setpetThumbnails(URL?.createObjectURL(file));
       }
     }
 
-    if (e.target.name ==='petvideoUpload') {
+    else if (e.target.name==='petImageUpload') {
       const file = e.target.files[0]
       if (file) {
-        setpetvideoUpload(URL.createObjectURL(file))
+        setpetImageUpload(URL?.createObjectURL(file));
       }
     }
-    if (e.target.name === 'petPdfUpload') {
+
+    else if (e.target.name ==='petvideoUpload') {
+      const file = e.target.files[0]
+      if (file) {
+        setpetvideoUpload(URL.createObjectURL(file));
+      }
+    }
+    
+    else if (e.target.name === 'petPdfUpload') {
       const file =e.target.files[0]
       if (file) {
-        setpetPdfUpload(URL.createObjectURL(file))
+        setpetPdfUpload(URL.createObjectURL(file));
       }
-      
     }
-
-
-
-    setaddPetForm({...addPetForm,[e.target.name]:e.target.value})
-
+    
   }
 
 
 
+  const handleSubmitAddPet =()=>{
+
+    let fileData =new FormData()
+
+    fileData.append('ImagePet',petimage)
+
+// here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
+   AxiosInstance.post('/admin/addPetData', fileData,{params:addPetForm},{Headers:{"content-type":'multipart/form-data'}}).then((Response)=>{
+
+   })
+  }
+
+
 
   return (
-
     <>
-    
     <div className="addtree">
-      <form>
-      {/* <form onSubmit={handleSubmit}> */}
+      {/* <form> */}
+      {/* <form onSubmit={handleSubmitAddPet}> */}
 
         <div className="container">
           <div className="leftSide-container">
@@ -133,7 +157,7 @@ function AddPet() {
                   type="file"
                   id="image"
                   accept="image/*"
-                  onChange={onChange}
+                  onChange={addPetFiles}
                 />
               </div>
             </div>
@@ -152,10 +176,6 @@ function AddPet() {
                     handlePetTypeChanges(e);
                     onChange(e);
                   }}
-
-                  // onChange={handlePetTypeChanges}
-                 
-                
                 >
                   <option value="">Select Pet</option>
                   <option value="DOG">DOG</option>
@@ -191,7 +211,34 @@ function AddPet() {
 
             <div className="row">
               <div className="col-25">
-                <label htmlFor="name">
+                <label htmlFor="petType">PET GENDER<span className="mandatory-indicator">*</span></label>
+              </div>
+              <div className="col-75">
+                <select
+                value={addPetForm.petGender}
+                  id="petGender"
+                  name="petGender"
+                  onChange={onChange}
+                  required
+                  // onChange={(e) => {
+                  //   handlePetTypeChanges(e);
+                  //   onChange(e);
+                  // }}
+                  
+                >
+                  <option value="">Select PetGender</option>
+                  <option value="MALE">MALE</option>
+                  <option value="FEMALE">FEMALE</option>
+                  
+                </select>
+              </div>
+            </div>
+
+
+
+            <div className="row">
+              <div className="col-25">
+                <label htmlFor="Name">
                   NAME <span className="mandatory-indicator">*</span>
                 </label>
               </div>
@@ -201,12 +248,12 @@ function AddPet() {
                 value={addPetForm.petName}
                   type="text"
                   id="petName"
-                  name="name"
+                  name="petName"
                   placeholder="Name.."
-                  onChange={onChange}
                   required
+                  onChange={onChange}
                 />
-                <span> </span>
+                {/* <span> </span> */}
               </div>
             </div>
 
@@ -221,10 +268,9 @@ function AddPet() {
                 value={addPetForm.petDateofbirth}
                   type="date"
                   id="petDateofbirth"
-                  name="dateofbirth"
+                  name="petDateofbirth"
                   placeholder="date of birth.."
                   onChange={onChange}
-               
                   required
                 />
               </div>
@@ -258,13 +304,11 @@ function AddPet() {
               <div className="col-75">
                 <input
                 value={addPetForm.petColour}
-                  type="text"
+                  type='text'
                   id="petColour "
-                  name="petColour "
+                  name="petColour"
                   placeholder="Colour.."
                   onChange={onChange}
-
-             
                 />
               </div>
             </div>
@@ -283,7 +327,7 @@ function AddPet() {
                   id="imageUpload"
                   name="petImageUpload"
                   accept="image/*"
-                  onChange={onChange}
+                  onChange={addPetFiles}
                 />
                 <br />
                 <label htmlFor="videoUpload">SELECT A VIDEOS</label>
@@ -292,7 +336,7 @@ function AddPet() {
                   id="videoUpload"
                   name="petvideoUpload"
                   accept="video/*"
-                  onChange={onChange}
+                  onChange={addPetFiles}
 
                 />
                 <br />
@@ -302,7 +346,7 @@ function AddPet() {
                   id="pdfUpload"
                   name="petPdfUpload"
                   accept="application/pdf"
-                  onChange={onChange}
+                  onChange={addPetFiles}
 
                 />
                 <br />
@@ -316,10 +360,6 @@ function AddPet() {
                 <br /> */}
               </div>
 
-           
-
-
-        
 
         </div>
 
@@ -334,6 +374,7 @@ function AddPet() {
             className="button-17"
             type="submit"
             style={{ backgroundColor: "rgb(10, 150, 250)", color: "white" }}
+            onClick={handleSubmitAddPet}
           >
             Submit
           </button>
@@ -356,7 +397,7 @@ function AddPet() {
       
 
 
-      </form>
+      {/* </form> */}
       <div style={{display:'flex', padding:'10px'}}>
       { petImageUpload && <img src={petImageUpload} alt="" 
               style={{width:'100px', height:'100px'}}
