@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./addpet.css";
 import AxiosInstance from "../../config/AxiosInstance";
+import { toastError, toastSucces } from "../../constants/plugines";
+import { useNavigate } from "react-router-dom";
 
 function AddPet() {
   const [petType, setpetType] = useState("");
   const [breeds, setbreeds] = useState([]);
-  // const [petThumbnails, setpetThumbnails] = useState("");
+  const navigate = useNavigate()
+  
   // -----//////-----
   const [petFiles, setpetFiles] = useState({
     petThumbUpload:null,
@@ -25,11 +28,6 @@ function AddPet() {
     petPrice: "",
     petColour: "",
   });
-
-  // const [petimage, setpetimage] = useState({
-  //   petThumbUpload: "",
-    
-  // });
 
   const handlePetTypeChanges = (e) => {
     const selectedPetType = e.target.value;
@@ -84,21 +82,28 @@ function AddPet() {
   };
 
   const handleSubmitAddPet = () => {
-    let fileData = new FormData();
-
-    fileData.append("PetThumbnail", petFiles.petThumbUpload);
-    fileData.append("PetImage", petFiles.petImageUpload);
-    fileData.append("PetVideo", petFiles.petVideoUpload);
-    fileData.append("PetPdf", petFiles.petPdfUpload);
-
-    // console.log(petimage);
-
-    // here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
-    AxiosInstance.post("/admin/addPetData", fileData, {
-      params: addPetForm,
-      headers: { "content-type": "multipart/form-data" },
-    }).then((Response) => {});
-  };
+    
+      let fileData = new FormData();
+      fileData.append("PetThumbnail", petFiles.petThumbUpload);
+      fileData.append("PetImage", petFiles.petImageUpload);
+      fileData.append("PetVideo", petFiles.petVideoUpload);
+      fileData.append("PetPdf", petFiles.petPdfUpload);
+      // here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
+      AxiosInstance.post("/admin/addPetData", fileData, {
+        params: addPetForm,
+        headers: { "content-type": "multipart/form-data" },
+      }).then((Response) => {
+        toastSucces('Pet data added successfully')
+        navigate('/dog')
+        
+      }).catch((Error)=>{
+        console.log(Error);
+        toastError('Internal Server Error')
+      })
+    
+    }
+    
+  // };
 
   return (
     <>

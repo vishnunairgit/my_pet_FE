@@ -4,8 +4,16 @@ import dogGromming from "../Assets/Untitled-design-60-1024x576.jpg";
 import dogWalking from "../Assets/walker-ser-lft.jpg";
 import bookmydoctor from "../Assets/BookNowBarkAve.png";
 import "./petCard.css";
+import { useNavigate } from "react-router-dom";
 
 function PetCard() {
+
+const navigate =useNavigate()
+
+const DogAdoption=()=>{
+  navigate('/dogAdoption')
+}
+  
   return (
     <>
     <div className="petcard">
@@ -21,8 +29,8 @@ function PetCard() {
                 alt="..."
               />
             </div>
-            <div className="col-md-8">
-              <div className="card-body">
+            <div className="col-md-8" >
+              <div className="card-body" onClick={DogAdoption}>
                 <h5 className="card-title">Dog adoption</h5>
                 <p className="card-text">
                   This is a wider card with supporting text below as a natural

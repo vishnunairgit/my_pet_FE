@@ -12,6 +12,7 @@ import PetFish from '../../PetFish/PetFish';
 import OtherPets from '../../OtherPet/OtherPets';
 import Accessories from '../../Accessories/Accessories';
 import AddPet from '../../Add Pet/AddPet';
+import DogAdoption from '../../PetDog/PetAdopDogList/DogAdoption';
 
 const Home = () => {
   return (
@@ -22,12 +23,15 @@ const Home = () => {
         <Routes>
           <Route path="/" element={<PetDog />} />
           <Route path="/dog" element={<PetDog />} />
+          <Route path="/dogAdoption" element={<DogAdoption/> }/>
+
           <Route path="/cats" element={<PetCat />} />
           <Route path="/birds" element={<PetBired />} />
           <Route path="/fish" element={<PetFish />} />
           <Route path="/otherPets" element={<OtherPets />} />
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/addpet" element={<AddPet/> }/>
+          
           {/* Add more routes as needed */}
         </Routes>
       </div>
