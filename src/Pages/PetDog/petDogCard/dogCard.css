@@ -1,0 +1,40 @@
+
+/* .Dogcards
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 260px;
+    justify-content: space-between;
+   
+} */
+
+
+.Dogcards .img-fluid
+{
+    height: 100%;
+    width: 500px;
+    padding: 10px;
+    /* border-radius: 20px; */
+}
+.Dogcards .card{
+    margin: 10px;
+   
+}
+.card-body
+{
+    text-align: justify;
+}
+
+
+.Dogcards .leftsidecol-md-6
+{
+    text-align: left;
+    width: 30%;
+}
+.Dogcards .rightsidecol-md-6
+{
+    text-align: left;
+    /* width: 70%; */
+}

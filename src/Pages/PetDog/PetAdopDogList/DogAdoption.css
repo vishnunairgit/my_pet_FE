@@ -1,0 +1,11 @@
+.DogAdoption
+{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    /* width: 95%; */
+    height: 260px;
+    justify-content: space-between;
+    /* padding: 5px 5px 0 5px; */
+   
+}
