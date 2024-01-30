@@ -1,15 +1,14 @@
 
-/* .Dogcards
-{
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    height: 260px;
-    justify-content: space-between;
-   
-} */
-
+.Dogcards {
+    width: 48% !important;
+    /* padding-bottom: 0px !important; */
+    height:fit-content;
+    padding-top: 20px;
+    /* padding-left: 30px; */
+    /* margin: 10px 5px 5px px; */
+    /* padding: 10px 5px 20px 5px; */
+    box-shadow: 9px 20px 5px rgb(37, 26, 37);    
+}
 
 .Dogcards .img-fluid
 {
@@ -18,23 +17,50 @@
     padding: 10px;
     /* border-radius: 20px; */
 }
-.Dogcards .card{
-    margin: 10px;
+.Dogcards .mb-2{
+    margin-bottom: 0 !important;
+
    
 }
-.card-body
+.Dogcards .card-body
 {
-    text-align: justify;
+    text-align: left;
+    /* background-color: blue; */
+
 }
+/* .Dogcards .col-md-4 {
+    width: 50%;
+
+} */
 
 
-.Dogcards .leftsidecol-md-6
+/* .Dogcards .leftsidecol-md-6
 {
     text-align: left;
     width: 30%;
-}
+} */
 .Dogcards .rightsidecol-md-6
 {
-    text-align: left;
+    /* text-align: left; */
     /* width: 70%; */
+}
+
+.Dogcards .info-item {
+    /* display: flex; */
+     /* margin-bottom: px;  */
+    /* Adjust the margin as needed */ 
+  }
+  
+.Dogcards .label {
+    min-width: 100px; /* Adjust the width as needed */
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  /* .value {
+    flex-grow: 1;
+  } */
+.row>* {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }

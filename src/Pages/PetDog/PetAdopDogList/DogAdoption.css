@@ -1,11 +1,17 @@
 .DogAdoption
 {
-    padding: 10px;
+    /* padding: 20px 20px 20px 0px; */
+    /* margin: 5px; */
     display: flex;
     flex-direction: row;
-    /* width: 95%; */
-    height: 260px;
-    justify-content: space-between;
+    width: 90%;
+    background-color: rgb(129, 129, 134);
+    /* height: 260px; */
+    justify-content: space-evenly;
+    
     /* padding: 5px 5px 0 5px; */
    
+}
+.row{
+    margin-left: 0px !important;
 }

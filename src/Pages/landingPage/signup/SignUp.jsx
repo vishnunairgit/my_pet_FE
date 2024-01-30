@@ -3,7 +3,7 @@ import "./signUp.css";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/BaseUrl";
 import { toastError, toastSucces } from "../../../constants/plugines";
-import { Alert } from "bootstrap";
+// import { Alert } from "bootstrap";
 
 function SignUp({ setloginsignup }) {
 
@@ -63,19 +63,21 @@ const handieUserSignUp=()=>{
   }
 
   try{
-    debugger
+    // debugger
     axios.post(`${BASE_URL}/auth/signUp`,signUpData).then((res)=>{
-      debugger
+      // debugger
       console.log(res);
-      if(res.data.message==="signUp successfull"){
+      if(res.data.message==='signUp successful'){
+        toastSucces('Login successful')
+
         // toastSucces('signUp successfull')
-      alert('signUp successfull')
-      setloginsignup("Login")
+        // alert('signUp successfull')
+      setloginsignup('Login')
       }
-     if(res.data.message==='email is alredy exist') {
-      debugger
-      // toastError('Email is already in use')
-        alert('Email is already in use')
+     if(res.data.message==='email is already exist') {
+      // debugger
+      toastError('Email is already in use')
+        // alert('Email is already in use')
       }     
     })
     
