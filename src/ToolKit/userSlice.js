@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE={
-    userDetails:JSON.parse(localStorage.getItem('user')) ?? {}
+    userDetails:JSON.parse(localStorage.getItem('user')) || {}
 
 }
 
@@ -14,9 +14,7 @@ const userSlice=createSlice({
         setuserDetails:(state,action)=>{
             state.userDetails=action.payload
         },
-        // setusreRole:(state,action)=>{
-        //     state.usreRole=''
-        // }
+       
     }
 })
 

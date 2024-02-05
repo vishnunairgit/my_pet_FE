@@ -6,6 +6,6 @@ import petSlice from "./petSlice";
 export const store=configureStore({
     reducer:{
         user:userSlice,
-        pet:petSlice
+        pets:petSlice
     }
 })

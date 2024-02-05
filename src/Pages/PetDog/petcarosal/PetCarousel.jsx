@@ -1,49 +1,70 @@
-import React from "react";
+
+
+
+import React, { useEffect, useState } from 'react';
 import './petcarousel.css';
-import pedtdogCarouselimg from "../Assets/dog-puppy-on-garden-royalty-free-image-1586966191.jpg";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
+import { BASE_URL } from '../../../constants/BaseUrl';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import AxiosInstance from '../../../config/AxiosInstance';
 
 function PetCarousel() {
+
+  const [petCarousaldata, setpetCarousaldata] = useState({ })
+  // 
+  useEffect(() => {
+    getAllDogPetsData();
+  }, []);
+
+  const getAllDogPetsData = () => {
+    AxiosInstance.get("/users/getAllDogPetsData")
+      .then((response) => {
+        // debugger;
+        setpetCarousaldata(response.data);
+        // dispatch(setpetDetails(response.data));
+        
+        // console.log(response.data,'------response.data-----');
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  };
+  // 
+            // fetching data from redux
+            // const { petDetails } = useSelector((state) => state.pets);
+            // console.log(petDetails, '-----------');
+
+  const navigate = useNavigate();
+
+            // const petnavigate = (petId) => {
+            //   navigate(`/SinglePetViewPage/${petId}`);
+            // };
+
+  const petnavigate= ()=>{
+    navigate('/dogAdoption')
+  }
+
+
+
   return (
-    <div>
-     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src={pedtdogCarouselimg} class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-    <img src={pedtdogCarouselimg} class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-    <img src={pedtdogCarouselimg} class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-    </div>
+    <Carousel autoPlay infiniteLoop className='custom-carousel'>
+      {petCarousaldata && petCarousaldata.length > 0 ? (
+        petCarousaldata.map((pet, index) => (
+          <div key={pet._id} onClick={() => petnavigate(pet._id)} className="carousel-item-container">
+            <img
+              src={`${BASE_URL}/petFiles/${pet.petThumbUpload}`}
+              className='PetCarouselimg'
+              alt={`Slide ${index + 1}`}
+            />
+            <p className="legend">{pet.petName}</p>
+          </div>
+        ))
+      ) : (
+        <div>No pet details available</div>
+      )}
+    </Carousel>
   );
 }
 

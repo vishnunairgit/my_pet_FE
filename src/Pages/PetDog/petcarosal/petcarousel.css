@@ -1,12 +1,92 @@
-.carousel-inner
+.custom-carousel
 {
+height: 360px !important;
+}
+
+
+
+.carousel-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the container takes the full height of the Carousel */
+  }
+  
+  .PetCarouselimg {
+    /* Add any additional styling for the image */
+    height: 300px !important;
+     max-height: 100%;  
+    /* Ensure the image doesn't exceed the container height */ 
+    max-width: 100%; 
+    /* Ensure the image doesn't exceed the container width */
+  }
+  
+  /* Add any other styling you need for the legend */
+  .legend {
+    text-align: center;
+    font-weight: 600;
+  }
+  
+
+
+/* main image*/ 
+.slide {
+    max-width: 50%;
+}
+
+/* samll image */
+.thumb{
+    height: 50px !important; 
+}
+
+.carousel .thumbs-wrapper
+{
+    margin: 10px 0 5px 0px !important;
+    /* overflow:hidden !important; */
+}
+ul.thumbs.animated
+{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+/* ----------------------------rowPosst------------- */
+
+/* .Carousal{
+
+}
+.Carousels{
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    
+}
+.Carousels::-webkit-scrollbar
+{
+display: none;
+} */
+
+/* .Carousel
+{
+    height: 300px;
+    border-radius: 8px;
     padding: 5px;
-    width: 100%;
-    /* height:350px !important; */
-}
-.carousel-inner img
+} */
+
+/* .title-overlay
 {
-height: 350px;
-width: 100%;
-border-radius: 7px;
-}
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; 
+    z-index: 1;
+
+} */
+
+
+/* -------------------rowPost------------- */
+
+
+

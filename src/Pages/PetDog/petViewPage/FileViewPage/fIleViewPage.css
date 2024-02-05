@@ -1,0 +1,31 @@
+.FIleViewPage
+{
+display: flex;
+flex-direction: column;
+
+}
+.FIleViewPage .image img,
+.FIleViewPage .video video,
+.FIleViewPage .pdf iframe
+{
+    width: 40%;
+    height: 40%;
+}
+.fullscreen,
+.fullscreen,
+.fullscreen
+{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.FIleViewPage .image.fullscreen,
+.FIleViewPage .video.fullscreenvideo,
+.FIleViewPage .pdf.fullscreen {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This property ensures the content fits inside the container */
+}

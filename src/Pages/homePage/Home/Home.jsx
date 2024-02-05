@@ -13,6 +13,10 @@ import OtherPets from '../../OtherPet/OtherPets';
 import Accessories from '../../Accessories/Accessories';
 import AddPet from '../../Add Pet/AddPet';
 import DogAdoption from '../../PetDog/PetAdopDogList/DogAdoption';
+import PetViewPage from '../../PetDog/petViewPage/PetViewPage';
+import FIleViewPage from '../../PetDog/petViewPage/FileViewPage/FIleViewPage';
+import MyBooking from '../../PetDog/mybooking/MyBooking';
+import {UserAuth,AdminAuth, }from '../../../Authorization/Authorization';
 
 const Home = () => {
   return (
@@ -21,16 +25,30 @@ const Home = () => {
       <div className="main-content">
         <Sidenavbar />
         <Routes>
+          <Route element={<UserAuth/>}>
           <Route path="/" element={<PetDog />} />
-          <Route path="/dog" element={<PetDog />} />
-          <Route path="/dogAdoption" element={<DogAdoption/> }/>
+              <Route path="/dog" element={<PetDog />} />
+              <Route path="/dogAdoption" element={<DogAdoption/> }/>
+              <Route path='/SinglePetViewPage/:id' element={<PetViewPage/> }/>
+              <Route path='/fIleViewPage/:id' element={<FIleViewPage/> }/>
+              <Route path='/mybooking' element={<MyBooking/> }/>
+          </Route>
+
+          <Route element={<AdminAuth/>}>
+
+            <Route path="/addpet" element={<AddPet/> }/>
+
+          </Route>
+
+
 
           <Route path="/cats" element={<PetCat />} />
           <Route path="/birds" element={<PetBired />} />
           <Route path="/fish" element={<PetFish />} />
           <Route path="/otherPets" element={<OtherPets />} />
           <Route path="/accessories" element={<Accessories />} />
-          <Route path="/addpet" element={<AddPet/> }/>
+
+
           
           {/* Add more routes as needed */}
         </Routes>

@@ -4,6 +4,7 @@ import "./App.css";
 import Landing from "./Pages/landingPage/landing/Landing";
 import Home from "./Pages/homePage/Home/Home";
 import { ToastContainer } from "react-toastify";
+import {LoginAuth} from './Authorization/Authorization'
 
 function App() {
   return (
@@ -12,8 +13,12 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing/> }/>
+          <Route element={<LoginAuth/>}>
+            <Route path="/" element={<Landing/> }/>
+          </Route>
+          
           <Route path="*" element={<Home/> }/>
+
         </Routes>
       </BrowserRouter>
 
@@ -24,26 +29,3 @@ function App() {
 
 export default App;
 
-// <Routes>
-
-// <Route element={<LoginAuth />}>
-// <Route path="/" element={<Landing />} />
-// </Route>
-
-// {/* userRoute */}
-
-// <Route element={<UserAuth />}>
-//     <Route path="/home" element={<Home />} />
-//     <Route path="/CourtUserViewPage/:id"element={<CourtUserViewPage />}/>
-//     <Route path="/MyBookings" element={<MyBookings />} />
-// </Route>
-
-// {/* adminRoute */}
-
-// <Route element={<AdminAuth/>}>
-//      <Route path="/AddNewCourt" element={<AddNewCourt/>} />
-//      <Route path="/EditCourt/:courtId" element={<EditCourt/>} />
-
-// </Route>
-
-// </Routes>

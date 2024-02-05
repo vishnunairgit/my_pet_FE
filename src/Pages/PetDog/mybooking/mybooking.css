@@ -1,5 +1,15 @@
-
+.myboking
+{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: rgb(129, 129, 134);
+    /* height: 260px; */
+    justify-content: space-evenly;
+    
+}
 .Dogcards {
+
     width: 48% !important;
     height:fit-content;
     padding-top: 20px;

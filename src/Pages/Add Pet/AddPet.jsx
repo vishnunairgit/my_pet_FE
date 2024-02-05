@@ -86,7 +86,7 @@ function AddPet() {
       let fileData = new FormData();
       fileData.append("PetThumbnail", petFiles.petThumbUpload);
       fileData.append("PetImage", petFiles.petImageUpload);
-      fileData.append("PetVideo", petFiles.petVideoUpload);
+      fileData.append("PetImage", petFiles.petvideoUpload);
       fileData.append("PetPdf", petFiles.petPdfUpload);
       // here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
       AxiosInstance.post("/admin/addPetData", fileData, {
@@ -324,7 +324,7 @@ function AddPet() {
                 <input
                   type="file"
                   id="videoUpload"
-                  name="petVideoUpload"
+                  name="petvideoUpload"
                   accept="video/*"
                   onChange={addPetFiles}
                 />
@@ -340,6 +340,7 @@ function AddPet() {
                 <br />
               </div>
             </div>
+
             <div style={{ display: "flex", padding: "10px" }}>
               {petFiles.petImageUpload && (
                 <img
@@ -351,7 +352,7 @@ function AddPet() {
               {petFiles.petvideoUpload && (
                 <video
                 src={URL.createObjectURL(petFiles.petvideoUpload)}
-                controls
+                // controls
                   width="100"
                   height="100"
                   type="video/*"
