@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import './petcarousel.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -15,17 +13,17 @@ function PetCarousel() {
   const [petCarousaldata, setpetCarousaldata] = useState({ })
   // 
   useEffect(() => {
-    getAllDogPetsData();
+    getAllDogPetsDatacarousal();
   }, []);
 
-  const getAllDogPetsData = () => {
-    AxiosInstance.get("/users/getAllDogPetsData")
+  const getAllDogPetsDatacarousal = () => {
+    AxiosInstance.get("/users/getAllDogPetsDatacarousal")
       .then((response) => {
         // debugger;
         setpetCarousaldata(response.data);
         // dispatch(setpetDetails(response.data));
         
-        // console.log(response.data,'------response.data-----');
+        console.log(setpetCarousaldata,'------setpetCarousaldata-----');
       })
       .catch((Error) => {
         console.log(Error);

@@ -12,11 +12,15 @@ function App() {
       <ToastContainer/>
       
       <BrowserRouter>
+
         <Routes>
-          <Route element={<LoginAuth/>}>
-            <Route path="/" element={<Landing/> }/>
+          <Route element={<LoginAuth />}>
+
+            <Route path="/" element={<Landing />} />
+            
           </Route>
-          
+                    {/* <Route element={<Home />} /> */}
+
           <Route path="*" element={<Home/> }/>
 
         </Routes>
@@ -29,3 +33,4 @@ function App() {
 
 export default App;
 
+// 

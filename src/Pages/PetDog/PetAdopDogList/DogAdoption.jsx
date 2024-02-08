@@ -15,7 +15,7 @@ function DogAdoption() {
   // -----------------//////////-------------------
 
   const [petDogData, setpetDogData] = useState([]);
-
+console.log();
   
   useEffect(() => {
     getAllDogPetsData();
@@ -24,11 +24,11 @@ function DogAdoption() {
   const getAllDogPetsData = () => {
     AxiosInstance.get("/users/getAllDogPetsData")
       .then((response) => {
-        // debugger;
+        debugger;
         setpetDogData(response.data);
         dispatch(setpetDetails(response.data));
         
-        // console.log(response.data,'------response.data-----');
+        console.log(response.data,'------response.data-----');
       })
       .catch((Error) => {
         console.log(Error);

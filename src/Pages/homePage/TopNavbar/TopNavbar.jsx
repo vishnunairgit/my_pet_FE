@@ -20,7 +20,7 @@ function TopNavbar() {
   const handlemybooking = ()=>{
     navigate('/mybooking')
   }
-   const handlelogout =()=>{
+   const handlelogout = () =>{
     localStorage.clear()
     navigate('/')
    }
