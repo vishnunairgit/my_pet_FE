@@ -62,7 +62,7 @@ function TopNavbar() {
 
       <li class="nav-item dropdown d-flux">
           <span class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            USER
           </span>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><span class="dropdown-item" >{userDetails.firstName}{userDetails.lastName}</span></li>

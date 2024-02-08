@@ -13,20 +13,26 @@ function PetCarousel() {
   const [petCarousaldata, setpetCarousaldata] = useState({ })
   // 
   useEffect(() => {
-    getAllDogPetsDatacarousal();
+    getAllDogPetsData();
   }, []);
 
-  const getAllDogPetsDatacarousal = () => {
-    AxiosInstance.get("/users/getAllDogPetsDatacarousal")
+  const getAllDogPetsData= () => {
+    AxiosInstance.get("/users/getAllDogPetsData")
       .then((response) => {
         // debugger;
         setpetCarousaldata(response.data);
         // dispatch(setpetDetails(response.data));
         
-        console.log(setpetCarousaldata,'------setpetCarousaldata-----');
+        // console.log(setpetCarousaldata,'------setpetCarousaldata-----');
       })
-      .catch((Error) => {
-        console.log(Error);
+      .catch((err) => {
+        debugger
+        if (err.response.data.message === 'unauthorized user') {
+          debugger
+          localStorage.clear();
+          navigate('/')
+        }
+        console.log(err);
       });
   };
   // 

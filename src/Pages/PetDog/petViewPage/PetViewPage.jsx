@@ -132,6 +132,11 @@ function PetViewPage({}) {
     });
   }
 
+  // ------------------edit pet
+  const handleEditPet =() =>{
+    navigate('/editPet')
+  }
+
   return (
     <div className="view-tree-container w-100 m-5">
       <div id="resume">
@@ -231,7 +236,7 @@ function PetViewPage({}) {
          {userDetails.role === 1 && <button
             className="btn btn-primary"
             // onClick={handleAction("Edit")}
-            style={{ backgroundColor: "rgb(0, 150, 0)", color: "white" }}>
+            style={{ backgroundColor: "rgb(0, 150, 0)", color: "white" }} onClick={handleEditPet}>
             Edit
           </button>}
 

@@ -4,8 +4,11 @@ import "../PetAdopDogList/DogAdoption.css";
 import Dogcards from "../petDogCard/Dogcards";
 import { useDispatch, useSelector } from "react-redux";
 import { setpetDetails } from "../../../ToolKit/petSlice";
+import { useNavigate } from "react-router-dom";
 
 function DogAdoption() {
+
+  const navigate=useNavigate();
 
   // ------------------redux -------------------------
 
@@ -19,7 +22,7 @@ console.log();
   
   useEffect(() => {
     getAllDogPetsData();
-  }, []);
+  },[]);
 
   const getAllDogPetsData = () => {
     AxiosInstance.get("/users/getAllDogPetsData")
@@ -30,8 +33,14 @@ console.log();
         
         console.log(response.data,'------response.data-----');
       })
-      .catch((Error) => {
-        console.log(Error);
+      .catch((err) => {
+        // debugger
+        if (err.response.data.message === 'unauthorized user') {
+          // debugger
+          localStorage.clear();
+          navigate('/')
+        }
+        console.log(err);
       });
   };
 
