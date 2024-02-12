@@ -1,40 +1,83 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react'
 import "../addpet.css";
-import { useNavigate } from "react-router-dom";
-import AxiosInstance from "../../../config/AxiosInstance";
-import { toastError, toastSucces } from "../../../constants/plugines";
+import AxiosInstance from '../../../config/AxiosInstance';
+import { useNavigate, useParams } from 'react-router-dom';
+import { BASE_URL } from '../../../constants/BaseUrl';
+import { toastSucces } from '../../../constants/plugines';
 
-function AddPet() {
-  const [petType, setpetType] = useState("");
-  const [breeds, setbreeds] = useState([]);
-  const navigate = useNavigate()
-  
-  // -----//////-----
-  const [petFiles, setpetFiles] = useState({
+function EditPet() {
+
+  const navigate=useNavigate()
+
+  // console.log(id,'----/:id-----');
+// ---------all the data we are getting  here-----
+  const [petdata, setpetdata] = useState({ })
+
+// ------------data upload---
+  const [petEditFiles, setpetEditFiles] = useState({
     petThumbUpload:null,
-    // petImageUpload: null,
-    // petvideoUpload: null,
-    // petPdfUpload: null,
-
-  });
-// ---------------///////---------
-
-  const [addPetForm, setaddPetForm] = useState({
-    petType: "",
-    petBreeds: "",
-    petGender: "",
-    petName: "",
-    petDateofbirth: "",
-    petPrice: "",
-    petColour: "",
+    petImageUpload: [],
+    petVideoUpload: [],
+    petPdfUpload: [],
   });
 
-  const handlePetTypeChanges = (e) => {
+
+
+const [petEidtType, setpetEidtType] = useState(" ")
+
+const [editbreeds, seteditbreeds] = useState([ ])
+
+  // -----------date formate we need to convert this way, otherwize it should not display in thn edit page----------
+  const formattedDate = petdata.petDateofbirth ? new Date(petdata.petDateofbirth).toISOString().split('T')[0] : '';
+
+
+  const { id } = useParams();
+  // console.log(singlePetData,'-----singlePetData-------');
+
+  useEffect(() => {
+    getSinglePetData();
+  }, []);
+
+  const getSinglePetData = () => {
+    AxiosInstance.get("users/getSinglePetData", { params: { petId: id } })
+      .then((response) => {
+        setpetdata(response.data);
+        // debugger;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+
+  const editPetFiles = (e) => {
+    const files = e.target.files;
+    const fieldName = e.target.name;
+
+    if (fieldName === "petThumbUpload") {
+      setpetdata({ ...petdata, [fieldName]: files[0] });
+    } else {
+      // If multiple files are allowed for other types of uploads, you can append them to the existing array
+      setpetEditFiles({ ...petEditFiles, [fieldName]: [...petEditFiles[fieldName], ...files] });
+    }
+
+
+  };
+
+
+  const editpet =(e)=>{
+    setpetdata({...petdata,[e.target.name]:e.target.value})
+
+  }
+
+
+  const handlePetTypeChangesEdit = (e) => {
     const selectedPetType = e.target.value;
-    setpetType(selectedPetType);
+    setpetEidtType(selectedPetType);
 
     if (selectedPetType === "DOG") {
-      setbreeds([
+      seteditbreeds([
         "Labrador",
         "Golden Retriever",
         "Poodle",
@@ -44,7 +87,7 @@ function AddPet() {
         "pomerainn",
       ]);
     } else if (selectedPetType === "CAT") {
-      setbreeds([
+      seteditbreeds([
         "Siamese",
         "Persian",
         "Maine Coon",
@@ -53,60 +96,46 @@ function AddPet() {
         "Ragdoll",
       ]);
     } else if (selectedPetType === "BRIDS") {
-      setbreeds(["love birds", "kuyil", "thata ", "dddd", " vvvvv", "hhhhh"]);
+      seteditbreeds(["love birds", "kuyil", "thata ", "dddd", " vvvvv", "hhhhh"]);
     } else if (selectedPetType === "FISH") {
-      setbreeds(["ayala", "mathi", "kora ", "koonthal ", "shark ", "kkkkk"]);
+      seteditbreeds(["ayala", "mathi", "kora ", "koonthal ", "shark ", "kkkkk"]);
     } else if (selectedPetType === "OTHER PETS") {
-      setbreeds(["lldld", "djdjjd", "dkjdkjd ", " dkdkd", " hdhhd", "jdjdj"]);
+      seteditbreeds(["lldld", "djdjjd", "dkjdkjd ", " dkdkd", " hdhhd", "jdjdj"]);
     } else {
-      setbreeds([]);
+      seteditbreeds([]);
     }
   };
 
-  const onChange = (e) => {
-    // debugge
-    setaddPetForm({ ...addPetForm, [e.target.name]: e.target.value });
-  };
 
-  const addPetFiles = (e) => {
-    const file = e.target.files[0];
-    const fieldName = e.target.name;
 
-    setpetFiles({...petFiles, [fieldName]: file });
+  const handleSubmitEditPet = ()=>{
 
-    // if (fieldName === "petThumbUpload") {
-    //   if (file) {
-    //     setpetThumbnails(URL?.createObjectURL(file));
-    //   }
-    // }
-  };
+    AxiosInstance.post('/admin/SubmitEditPet',petdata).then((res)=>{
 
-  const handleSubmitAddPet = () => {
-    
-      let fileData = new FormData();
-      fileData.append("PetThumbnail", petFiles.petThumbUpload);
-    //   fileData.append("PetImage", petFiles.petImageUpload);
-    //   fileData.append("PetImage", petFiles.petvideoUpload);
-    //   fileData.append("PetPdf", petFiles.petPdfUpload);
-      // here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
-      AxiosInstance.post("/admin/addPetData", fileData, {
-        params: addPetForm,
-        headers: { "content-type": "multipart/form-data" },
-      }).then((Response) => {
-        toastSucces('Pet data added successfully')
-        navigate('/dog')
-        
-      }).catch((Error)=>{
-        console.log(Error);
-        toastError('Internal Server Error')
-      })
-    
-    }
-    
-  
+    // if we are updating only data call the sunction 
+      // setpetdata(petdata)
+
+      
+    // if we are updating imgaes also use 
+    getSinglePetData()
+
+
+
+      navigate(`/SinglePetViewPage/${id}`);
+      toastSucces('Pet data edited successfully')
+
+
+    }).catch((err)=>{
+      console.log(err);
+
+    })
+  }
+
+
 
   return (
-    <>
+    <div>
+       <>
       <div className="addtree">
         {/* <form> */}
         {/* <form onSubmit={handleSubmitAddPet}> */}
@@ -115,40 +144,28 @@ function AddPet() {
           <div className="leftSide-container">
             <h2>EDIT PET</h2>
             <div className="Tree-thumbnail">
-              <div className="Tree-thumbnail-leftside">
-                {petFiles.petThumbUpload && (
-                  <img
-                  src={URL.createObjectURL(petFiles.petThumbUpload)}
+              
 
-                    src={petFiles.petThumbnails}
-                    alt=""
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                )}
-                {/* {treeImage ? (
-                  <img
-                    src={treeImage}
-                    alt="Profile Preview"
-                    style={{ width: "200px", height: "200px" }}
-                  />
-                ) : (
-                  <img
-                    title="No Image"
-                    src={Btree}
-                    alt="No Image"
-                    style={{ width: "200px", height: "200px" }}
-                  />
-                )} */}
-              </div>
+                <div className="Tree-thumbnail-leftside">
+                  {petdata.petThumbUpload && (
+                    <img
+                    src={`${BASE_URL}/petFiles/${petdata?.petThumbUpload}`}
+                      alt=""
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                </div>
+              
               <div className="Tree-thumbnail-rightside">
                 <label htmlFor="image">Upload Thumbnail</label>
                 <br />
                 <input
                   type="file"
-                  name="petThumbUpload"
+
+                 name="petThumbUpload"
                   id="petThumbUpload"
                   accept="image/*"
-                //   onChange={addPetFiles}
+                  onChange={editPetFiles}
                 />
               </div>
             </div>
@@ -161,14 +178,16 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <select
-                  value={addPetForm.petType}
+                  value={petdata.petType}
                   id="petType"
                   name="petType"
                   required
                   onChange={(e) => {
-                    handlePetTypeChanges(e);
-                    onChange(e);
-                  }}>
+                    handlePetTypeChangesEdit(e);
+                    editpet(e);
+                  }}
+                  >
+
                   <option value="">Select Pet</option>
                   <option value="DOG">DOG</option>
                   <option value="CAT">CAT</option>
@@ -187,14 +206,22 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <select
-                  value={addPetForm.petBreeds}
+                  value={petdata.petBreeds}
                   id="petBreeds"
                   name="petBreeds"
                   required
-                  onChange={onChange}>
-                  <option value="">Select Breeds</option>
-                  {breeds.map((breed) => (
-                    <option key={breed} value={breed}>
+                  onChange={editpet}
+                  >
+                  {/* <option value="">Select Breeds</option>
+                  {editbreeds.map((editBreed)=>(
+                    <option key={editBreed} value={editbreeds}>
+                      {editbreeds}
+                      </option>
+                  ))} */}
+
+                  {editbreeds.map((breed) => (
+                    <option key={breed} value={breed}
+                    >
                       {breed}
                     </option>
                   ))}
@@ -210,15 +237,12 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <select
-                  value={addPetForm.petGender}
+                  value={petdata.petGender}
                   id="petGender"
                   name="petGender"
-                  onChange={onChange}
+                  onChange={editpet}
                   required
-                  // onChange={(e) => {
-                  //   handlePetTypeChanges(e);
-                  //   onChange(e);
-                  // }}
+                 
                 >
                   <option value="">Select PetGender</option>
                   <option value="MALE">MALE</option>
@@ -236,15 +260,14 @@ function AddPet() {
 
               <div className="col-75">
                 <input
-                  value={addPetForm.petName}
+                  value={petdata.petName}
                   type="text"
                   id="petName"
                   name="petName"
                   placeholder="Name.."
                   required
-                  onChange={onChange}
+                  onChange={editpet}
                 />
-                {/* <span> </span> */}
               </div>
             </div>
 
@@ -256,12 +279,12 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
-                  value={addPetForm.petDateofbirth}
+                  value={formattedDate}
                   type="date"
                   id="petDateofbirth"
                   name="petDateofbirth"
                   placeholder="date of birth.."
-                  onChange={onChange}
+                  onChange={editpet}
                   required
                 />
               </div>
@@ -275,12 +298,12 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
-                  value={addPetForm.petPrice}
+                  value={petdata.petPrice}
                   type="number"
                   id="petPrice"
                   name="petPrice"
                   placeholder="Price.."
-                  onChange={onChange}
+                  onChange={editpet}
                 />
               </div>
             </div>
@@ -293,18 +316,18 @@ function AddPet() {
               </div>
               <div className="col-75">
                 <input
-                  value={addPetForm.petColour}
+                 value={petdata.petColour}
                   type="text"
                   id="petColour "
                   name="petColour"
                   placeholder="Colour.."
-                  onChange={onChange}
+                  onChange={editpet}
                 />
               </div>
             </div>
           </div>
 
-          {/* <div className="rightSide-container">
+          <div className="rightSide-container">
             <div className="rightSide-container-2">
               <div className="text">
                 <h4>UPLOAD FILES</h4>
@@ -317,8 +340,8 @@ function AddPet() {
                   id="imageUpload"
                   name="petImageUpload"
                   accept="image/*"
-                  onChange={addPetFiles}
-                />
+                  onChange={editPetFiles}
+                  />
                 <br />
                 <label htmlFor="videoUpload">SELECT A VIDEOS</label>
                 <input
@@ -326,8 +349,8 @@ function AddPet() {
                   id="videoUpload"
                   name="petvideoUpload"
                   accept="video/*"
-                  onChange={addPetFiles}
-                />
+                  onChange={editPetFiles}
+                  />
                 <br />
                 <label htmlFor="pdfUpload">SELECT A PDFS</label>
                 <input
@@ -335,41 +358,78 @@ function AddPet() {
                   id="pdfUpload"
                   name="petPdfUpload"
                   accept="application/pdf"
-                  onChange={addPetFiles}
-                />
+                  onChange={editPetFiles}
+                  />
                 <br />
               </div>
             </div>
 
             <div style={{ display: "flex", padding: "10px" }}>
-              {petFiles.petImageUpload && (
+
+              {/* {petEditFiles.petImageUpload && (
+
                 <img
-                  src={URL.createObjectURL(petFiles.petImageUpload)}
+                  src={URL.createObjectURL(petEditFiles.petImageUpload)}
                   alt=""
                   style={{ width: "100px", height: "100px" }}
                 />
-              )}
-              {petFiles.petvideoUpload && (
+              )} */}
+             
+
+              {/* {petEditFiles.petvideoUpload && (
                 <video
-                src={URL.createObjectURL(petFiles.petvideoUpload)}
+                src={URL.createObjectURL(petEditFiles.petvideoUpload)}
                 // controls
                   width="100"
                   height="100"
                   type="video/*"
                 />
-              )}
-
-              {petFiles.petPdfUpload && (
+              )} */}
+              
+              {/* {petEditFiles.petPdfUpload && (
                 <iframe
-                  src={URL.createObjectURL(petFiles.petPdfUpload)}
+                  src={URL.createObjectURL(petEditFiles.petPdfUpload)}
                   frameborder="0"
                   title="PDF Viewer"
                   width="100"
                   height="100"
                 />
-              )}
+              )} */}
+              <div style={{ display: "flex", padding: "10px" }}>
+  {petEditFiles?.petImageUpload?.map((image, index) => (
+    <img
+      key={index}
+      src={URL.createObjectURL(image)}
+      alt={`Image ${index + 1}`}
+      style={{ width: "100px", height: "100px", marginRight: "10px" }}
+    />
+  ))}
+
+  {petEditFiles?.petvideoUpload?.map((video, index) => (
+    <video
+      key={index}
+      src={URL.createObjectURL(video)}
+      width="100"
+      height="100"
+      type="video/*"
+    />
+  ))}
+
+  {petEditFiles?.petPdfUpload?.map((pdf, index) => (
+    <iframe
+      key={index}
+      src={URL.createObjectURL(pdf)}
+      title="PDF Viewer"
+      width="100"
+      height="100"
+    />
+  ))}
+</div>
+
+             
+
             </div>
-          </div> */}
+          </div>
         </div>
 
         {/* {error && <ErrorMessage message={error} />} */}
@@ -379,7 +439,7 @@ function AddPet() {
             className="button-17"
             type="submit"
             style={{ backgroundColor: "rgb(10, 150, 250)", color: "white" }}
-            // onClick={handleSubmitAddPet}
+            onClick={handleSubmitEditPet}
             >
             Submit
           </button>
@@ -400,7 +460,13 @@ function AddPet() {
         {/* </form> */}
       </div>
     </>
-  );
+
+
+
+
+
+    </div>
+  )
 }
 
-export default AddPet;
+export default EditPet

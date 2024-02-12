@@ -6,20 +6,28 @@ import AxiosInstance from "../../../config/AxiosInstance";
 import { BASE_URL } from "../../../constants/BaseUrl";
 import { toastSucces } from "../../../constants/plugines";
 import { useSelector } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import { Button } from "react-bootstrap";
 
 function PetViewPage({}) {
   const [singlePetData, setsinglePetData] = useState({});
-
-  const {userDetails}=useSelector((state)=>state.user)
-
-
-
+  const { userDetails } = useSelector((state) => state.user);
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   // console.log(singlePetData,'-----singlePetData-------');
 
   useEffect(() => {
     getSinglePetData();
   }, []);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const getSinglePetData = () => {
     AxiosInstance.get("users/getSinglePetData", { params: { petId: id } })
@@ -34,17 +42,12 @@ function PetViewPage({}) {
 
   // image view page
 
-  const navigate = useNavigate();
-
   const petfiles = () => {
     navigate(`/FIleViewPage/${id}`);
   };
 
   // -------------------------------------------
   // ---------------------back function --------
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   // -----------------------razorrPay--------------------
 
@@ -132,10 +135,22 @@ function PetViewPage({}) {
     });
   }
 
-  // ------------------edit pet
-  const handleEditPet =() =>{
-    navigate('/editPet')
-  }
+  // ------------------edit pet-------------
+  const handleEditPet = () => {
+    navigate(`/editPet/${id}`);
+  };
+
+  // -------------delete pet------------ -
+
+  const handleDelete = () => {
+    AxiosInstance.delete("/admin/deletePet", singlePetData)
+      .then((response) => {
+        console.log(response.data, "Pet deleted successfully");
+      })
+      .catch((error) => {
+        console.log(error, "Error Deleting Pet");
+      });
+  };
 
   return (
     <div className="view-tree-container w-100 m-5">
@@ -233,19 +248,41 @@ function PetViewPage({}) {
             Adopt
           </button>
 
-         {userDetails.role === 1 && <button
-            className="btn btn-primary"
-            // onClick={handleAction("Edit")}
-            style={{ backgroundColor: "rgb(0, 150, 0)", color: "white" }} onClick={handleEditPet}>
-            Edit
-          </button>}
+          {userDetails.role === 1 && (
+            <button
+              className="btn btn-primary"
+              onClick={handleEditPet}
+              style={{ backgroundColor: "rgb(0, 150, 0)", color: "white" }}>
+              Edit
+            </button>
+          )}
 
-       { userDetails.role ===1 &&  <button
-            className="btn btn-danger"
-            // onClick={handledelete}
-            style={{ backgroundColor: "rgb(200, 0, 0)", color: "white" }}>
-            Delete
-          </button>}
+          {userDetails.role === 1 && (
+            <button
+              className="btn btn-danger"
+              onClick={handleShow}
+              style={{ backgroundColor: "rgb(200, 0, 0)", color: "white" }}>
+              Delete
+            </button>
+          )}
+
+          {/* modal */}
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete the pet?</Modal.Body>
+            <Modal.Footer>
+
+              <button type="button" onClick={handleDelete}>yes</button>
+              {/* <Button variant="secondary" onClick={handleDelete}> */}
+                {/* YES */}
+              {/* </Button> */}
+              <Button variant="primary" onClick={handleClose}>
+                NO
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
           <button
             className="btn btn-dark"

@@ -27,6 +27,7 @@ const Home = () => {
         <Sidenavbar />
         <Routes>
           {/* Protected routes for regular users */}
+          
           <Route element={<UserAuth/>}>
             <Route path="/" element={<PetDog />} />
             <Route path="/dog" element={<PetDog />} />
@@ -39,7 +40,7 @@ const Home = () => {
           {/* Protected routes for admin */}
           <Route element={<AdminAuth/>}>
             <Route path="/addpet" element={<AddPet/>} />
-            <Route path="/editPet" element={<EditPet/>} />
+            <Route path="/editPet/:id" element={<EditPet/>} />
 
           </Route>
 {/* EditPet */}

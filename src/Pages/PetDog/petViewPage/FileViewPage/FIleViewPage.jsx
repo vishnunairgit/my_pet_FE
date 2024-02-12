@@ -5,22 +5,34 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./fIleViewPage.css";
 
 function FIleViewPage() {
-  const [singlePetData, setsinglePetData] = useState({});
+
+  const { id } = useParams();
+
+ 
+
+
+  const [singlePetfileData, setsinglePetfileData] = useState({});
+
   const [fullscreenImage, setFullscreenImage] = useState(false);
   const [fullscreenVideo, setFullscreenVideo] = useState(false);
   const [fullscreenPdf, setFullscreenPdf] = useState(false);
-
-
-  const { id } = useParams();
 
   useEffect(() => {
     getSinglePetData();
   },[ ]);
 
+
+
+  useEffect(() => {
+    getSinglePetData();
+  }, []);
+
   const getSinglePetData = () => {
-    AxiosInstance.get("users/getSinglePetData", { params: { courtID: id } })
+    AxiosInstance.get("users/getSinglePetData", { params: { petId: id } })
       .then((response) => {
-        setsinglePetData(response.data);
+        setsinglePetfileData(response.data);
+        console.log(response.data,'----setsinglePetfileData(response.data)------');
+        // debugger;
       })
       .catch((error) => {
         console.log(error);
@@ -47,13 +59,15 @@ function FIleViewPage() {
 
   return (
     <div className="FIleViewPage m-3">
+      
       <div className={`image ${fullscreenImage ? "fullscreen" : ""}`}>
-        {singlePetData?.petImageUpload?.map((image, index) => (
+        {singlePetfileData?.petImageUpload?.map((image, index) => (
           <div key={index} onClick={toggleFullscreenImage}>
             {image && (
               <img
                 src={`${BASE_URL}/petFiles/${image}`}
                 alt={`Pet Image ${index + 1}`}
+              
               />
             )}
             <p>Image {index + 1}</p>
@@ -61,9 +75,8 @@ function FIleViewPage() {
         ))}
       </div>
 
-      {/* <div className={`video ${fullscreenVideo ? "fullscreen" : ""}`}>
-        
-        {singlePetData?.petVideoUpload?.map((video, index) => (
+      <div className={`video ${fullscreenVideo ? "fullscreen" : ""}`}>
+        {singlePetfileData?.petVideoUpload?.map((video, index) => (
           <div key={index} onClick={toggleFullscreenVideo}>
             <p>{video}</p>
             {video && (
@@ -79,10 +92,12 @@ function FIleViewPage() {
             <p>Video {index + 1}</p>
           </div>
         ))}
-      </div> */}
+      </div>
+
+{/* 
   <div className={`video ${fullscreenVideo ? "fullscreen" : ""}`}>
-  {singlePetData?.petVideoUpload?.length > 0 ? (
-    singlePetData?.petVideoUpload.map((video, index) => (
+  {singlePetfileData?.petVideoUpload?.length > 0 ? (
+    singlePetfileData?.petVideoUpload.map((video, index) => (
       <div key={index} onClick={toggleFullscreenVideo}>
         {video ? (
           <video width="320" height="240" controls>
@@ -102,12 +117,12 @@ function FIleViewPage() {
   ) : (
     <p>No video files</p>
   )}
-</div>
+</div> */}
 
 
 
       <div className={`pdf ${fullscreenPdf ? "fullscreen" : ""}`}>
-        {singlePetData?.petPdfUpload?.map((pdf, index) => (
+        {singlePetfileData?.petPdfUpload?.map((pdf, index) => (
           <div key={index} onClick={toggleFullscreenPdf}>
             {pdf && (
               <iframe

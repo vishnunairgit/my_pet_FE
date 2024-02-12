@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./addpet.css";
 import AxiosInstance from "../../config/AxiosInstance";
 import { toastError, toastSucces } from "../../constants/plugines";
 import { useNavigate } from "react-router-dom";
+import './addpet.css'
 
 function AddPet() {
   const [petType, setpetType] = useState("");
@@ -86,7 +86,7 @@ function AddPet() {
       let fileData = new FormData();
       fileData.append("PetThumbnail", petFiles.petThumbUpload);
       fileData.append("PetImage", petFiles.petImageUpload);
-      fileData.append("PetImage", petFiles.petvideoUpload);
+      fileData.append("PetVideo", petFiles.petvideoUpload);
       fileData.append("PetPdf", petFiles.petPdfUpload);
       // here we are sending all the data to backend. file data and form data. also we need to set a header. multipart means both file data and normal data
       AxiosInstance.post("/admin/addPetData", fileData, {

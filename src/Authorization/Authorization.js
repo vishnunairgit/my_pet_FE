@@ -29,17 +29,17 @@ export function AdminAuth() {
     return (token && user && user.role === 1) ? <Outlet /> : <Navigate to="/" />;
   }
 
-//   export function LoginAuth() {
-//     const token = localStorage.getItem('token');
-//     // const user=JSON.parse(localStorage.getItem('user'))
-//     return (
-//       token ? <Navigate to ='/home'/>:<Outlet /> 
-//       )
-//   }
-
-
-export function LoginAuth() {
+  export function LoginAuth() {
     const token = localStorage.getItem('token');
-    // Redirect to home if token exists, otherwise allow access
-    return token ? <Navigate to="/home" /> : <Outlet />;
+    // const user=JSON.parse(localStorage.getItem('user'))
+    return (
+      token ? <Navigate to ='/home'/>:<Outlet /> 
+      )
   }
+
+
+// export function LoginAuth() {
+//     const token = localStorage.getItem('token');
+//     // Redirect to home if token exists, otherwise allow access
+//     return token ? <Navigate to="/home" /> : <Outlet />;
+//   }

@@ -27,7 +27,7 @@ console.log();
   const getAllDogPetsData = () => {
     AxiosInstance.get("/users/getAllDogPetsData")
       .then((response) => {
-        debugger;
+        // debugger;
         setpetDogData(response.data);
         dispatch(setpetDetails(response.data));
         
