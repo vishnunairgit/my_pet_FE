@@ -110,7 +110,7 @@ const [editbreeds, seteditbreeds] = useState([ ])
 
   const handleSubmitEditPet = ()=>{
 
-    AxiosInstance.post('/admin/SubmitEditPet',petdata).then((res)=>{
+    AxiosInstance.post('admin/SubmitEditPet',petdata).then((res)=>{
 
     // if we are updating only data call the sunction 
       // setpetdata(petdata)

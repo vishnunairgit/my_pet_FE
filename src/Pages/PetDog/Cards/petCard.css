@@ -8,7 +8,8 @@
 .petcard-1
 {
     display: flex;
-    width: 100%;
+    max-width: 100%;
+    /* width: 100%; */
     justify-content: space-between;
     padding: 5px 5px 0 5px;
     /* margin: 5px; */

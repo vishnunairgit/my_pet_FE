@@ -143,12 +143,23 @@ function PetViewPage({}) {
   // -------------delete pet------------ -
 
   const handleDelete = () => {
-    AxiosInstance.delete("/admin/deletePet", singlePetData)
+    // Optimistically update UI assuming deletion will be successful
+    // You can update the UI here before the request is complete
+
+    AxiosInstance.delete("admin/deletePet", { params: { petId: id } })
       .then((response) => {
         console.log(response.data, "Pet deleted successfully");
+        toastSucces("Pet deleted successfully");
+        handleClose();
+        navigate("/dogAdoption");
+
+        // Show success message to the user
+        // Update UI if needed (e.g., remove the deleted pet from the list)
       })
       .catch((error) => {
         console.log(error, "Error Deleting Pet");
+        // Show error message to the user
+        // Optionally, revert any optimistic UI updates
       });
   };
 
@@ -258,31 +269,32 @@ function PetViewPage({}) {
           )}
 
           {userDetails.role === 1 && (
-            <button
-              className="btn btn-danger"
-              onClick={handleShow}
-              style={{ backgroundColor: "rgb(200, 0, 0)", color: "white" }}>
-              Delete
-            </button>
-          )}
-
-          {/* modal */}
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Are you sure you want to delete the pet?</Modal.Body>
-            <Modal.Footer>
-
-              <button type="button" onClick={handleDelete}>yes</button>
-              {/* <Button variant="secondary" onClick={handleDelete}> */}
-                {/* YES */}
-              {/* </Button> */}
-              <Button variant="primary" onClick={handleClose}>
-                NO
+            <div>
+              <Button
+                style={{ width: "100%" }}
+                variant="danger"
+                onClick={handleShow}>
+                Delete
               </Button>
-            </Modal.Footer>
-          </Modal>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Delete Pet</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Are you sure you want to delete the : {singlePetData?.petName}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleDelete}>
+                    Yes
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    No
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
+          )}
 
           <button
             className="btn btn-dark"

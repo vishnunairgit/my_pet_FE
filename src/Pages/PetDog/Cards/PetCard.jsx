@@ -33,9 +33,8 @@ const DogAdoption=()=>{
               <div className="card-body" onClick={DogAdoption}>
                 <h5 className="card-title">Dog adoption</h5>
                 <p className="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                Dog adoption is one of the best ways to clear the 
+                shelters and enrich your life with a furry new friend, love dog...
                 </p>
                 <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
@@ -58,9 +57,8 @@ const DogAdoption=()=>{
               <div className="card-body">
                 <h5 className="card-title">Dog Grooming</h5>
                 <p className="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                Dog adoption is one of the best ways to clear the 
+                shelters and enrich your life with a furry new friend, love dog.
                 </p>
                 <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
@@ -86,9 +84,8 @@ const DogAdoption=()=>{
               <div className="card-body">
                 <h5 className="card-title">Dog walker</h5>
                 <p className="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                Dog adoption is one of the best ways to clear the 
+                shelters and enrich your life with a furry new friend, love dog.
                 </p>
                 <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
@@ -111,9 +108,8 @@ const DogAdoption=()=>{
               <div className="card-body">
                 <h5 className="card-title">Book An Appointment dr </h5>
                 <p className="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                Dog adoption is one of the best ways to clear the 
+                shelters and enrich your life with a furry new friend, love dog.
                 </p>
                 <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
