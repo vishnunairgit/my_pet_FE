@@ -36,9 +36,9 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog...
                 </p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -60,9 +60,9 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -87,9 +87,9 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -111,9 +111,9 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

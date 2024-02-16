@@ -13,4 +13,5 @@
 }
 .row{
     margin-left: 0px !important;
+    --bs-gutter-x: 0 !important ;
 }

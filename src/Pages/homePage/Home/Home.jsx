@@ -21,7 +21,7 @@ import EditPet from '../../Add Pet/editPet/EditPet';
 
 const Home = () => {
   return (
-    <div>
+    <div className='home'>
       <TopNavbar />
       <div className="main-content">
         <Sidenavbar />

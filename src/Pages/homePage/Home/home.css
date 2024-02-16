@@ -1,5 +1,14 @@
+.home
+{
+    height: 890px;
+}
+
+
+
 .main-content
 {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
+    background-color: rgb(207, 223, 138) !important;
+
 }

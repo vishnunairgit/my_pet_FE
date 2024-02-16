@@ -46,7 +46,7 @@ console.log();
 
   return (
     <>
-      <div className="DogAdoption row">
+      <div className="DogAdoption row ">
         {petDogData.map((petDog) => (<  Dogcards propspetDogData={petDog} /> ))}
       </div>
     </>
