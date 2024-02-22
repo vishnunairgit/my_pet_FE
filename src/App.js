@@ -4,7 +4,9 @@ import "./App.css";
 import Landing from "./Pages/landingPage/landing/Landing";
 import Home from "./Pages/homePage/Home/Home";
 import { ToastContainer } from "react-toastify";
-import {LoginAuth} from './Authorization/Authorization'
+import {LoginAuth} from './Authorization/Authorization';
+import Landdingpage from "./Pages/landingPage/firstpage/Landdingpage";
+
 
 function App() {
   return (
@@ -16,8 +18,9 @@ function App() {
         <Routes>
           <Route element={<LoginAuth />}>
 
-            <Route path="/" element={<Landing />} />
-            
+            <Route path="/" element={< Landdingpage/>} />
+            <Route path="/landing" element={< Landing/>} />
+
           </Route>
                     {/* <Route element={<Home />} /> */}
 

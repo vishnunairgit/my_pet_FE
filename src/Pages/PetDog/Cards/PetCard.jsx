@@ -17,7 +17,6 @@ const DogAdoption=()=>{
   return (
     <>
     <div className="petcard">
-
       <div className="petcard-1 ">
 
         <div className="card m-1 " >
@@ -31,14 +30,15 @@ const DogAdoption=()=>{
             </div>
             <div className="col-md-8" >
               <div className="card-body" onClick={DogAdoption}>
-                <h5 className="card-title">Dog adoption</h5>
+                <h5 className="card-title">Adoption a Dog</h5>
                 <p className="card-text">
                 Dog adoption is one of the best ways to clear the 
-                shelters and enrich your life with a furry new friend, love dog...
+                shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                {/* <p className="card-text">
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </p> */}
+                <button className=" btn btn-primary" onClick={DogAdoption}>BOOK NOW</button>
+
+                <p className="card-text">
+                </p>
               </div>
             </div>
           </div>
@@ -60,9 +60,7 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                {/* <p className="card-text">
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </p> */}
+                <button className=" btn btn-primary" >BOOK NOW</button>
               </div>
             </div>
           </div>
@@ -82,11 +80,13 @@ const DogAdoption=()=>{
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <h5 className="card-title">Dog walker</h5>
+                <h5 className="card-title">Dog Walkers</h5>
                 <p className="card-text">
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
+                <button className=" btn btn-primary" >BOOK NOW</button>
+
                 {/* <p className="card-text">
                   <small className="text-muted">Last updated 3 mins ago</small>
                 </p> */}
@@ -106,14 +106,13 @@ const DogAdoption=()=>{
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <h5 className="card-title">Book An Appointment dr </h5>
+                <h5 className="card-title">Book Pet Consultants</h5>
                 <p className="card-text">
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                {/* <p className="card-text">
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </p> */}
+                <button className=" btn btn-primary" >BOOK NOW</button>
+
               </div>
             </div>
           </div>
