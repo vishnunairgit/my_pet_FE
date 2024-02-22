@@ -88,7 +88,7 @@ function Landdingpage() {
             <img src={grooming} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">Pet Grooming</h5>
-              <a href="#" className="btn btn-primary">BOOK NOW</a>
+              <a href="#" className="btn btn-primary" onClick={handlelog}>BOOK NOW</a>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ function Landdingpage() {
             <img src={petdr} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">Pet Consultants</h5>
-              <a href="#" className="btn btn-primary">BOOK NOW</a>
+              <a href="#" className="btn btn-primary"onClick={handlelog}>BOOK NOW</a>
             </div>
           </div>
 
