@@ -182,8 +182,6 @@ function Landdingpage() {
           <li>Professional Expertise.</li>
           <li>Nail and Teeth Care.</li>
           <button type="button" className='btn btn-primary m-2' onClick={handlelog}> BOOK NOW</button>
-
-
         </div>
         <div>
           <img src={grooming} alt="" />
