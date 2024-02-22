@@ -1,0 +1,65 @@
+.forndpagemain
+{
+    background-color: rgb(211, 83, 228);
+}
+
+.forndpage{
+    display: flex;
+    justify-content: space-around;
+}
+.heading{
+    font-family: Brush Script MT, Brush Script Std, cursive	;
+
+}
+
+.forndpage .card{
+    box-shadow: 10px 10px 5px rgb(149, 118, 167);
+}
+
+.shopname{
+    display: flex;
+    text-align: left;
+    font-family: Brush Script MT, Brush Script Std, cursive	;
+    
+}
+.shopname img{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
+.loginbutton{
+    padding: 20px 20px 0 0;
+}
+/* .frondpagecard{
+    padding-left: 25%;
+
+} */
+.forndpage .card{
+margin: 50px;
+}
+.forndpage .card img{
+    max-width: 300px;
+    height: 160px;
+
+
+}
+.petwalk, 
+.petGrom{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.petwalk img,
+.petGrom img {
+width: 500px;
+}
+
+.cardpetadopt img{
+    width: 150px;
+    height: 100px;
+}

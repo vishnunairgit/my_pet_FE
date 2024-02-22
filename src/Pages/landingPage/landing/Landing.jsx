@@ -26,7 +26,6 @@ function Landing() {
               If you don't own a dog, at least one, 
               there may not necessarily be anything wrong with you, 
               but there may be something wrong with your life.
-
               </p>
             </div>
           </div>
