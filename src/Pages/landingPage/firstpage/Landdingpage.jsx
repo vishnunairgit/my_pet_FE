@@ -56,7 +56,7 @@ function Landdingpage() {
       <div className='nav'>
         <div className='shopname'>
           <h1>Petiezzz</h1>
-          <img src={petfoot} alt="" />
+          <img src={petfoot} alt="img" />
         </div>
         <div><h3>We are happy to serve you</h3></div>
         <div className='loginbutton'>
