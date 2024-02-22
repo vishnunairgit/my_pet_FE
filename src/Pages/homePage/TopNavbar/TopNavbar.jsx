@@ -61,14 +61,14 @@ function TopNavbar() {
       {/* </form> */}
 
       <li class="nav-item dropdown d-flux">
-          <span class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             USER
           </span>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><span class="dropdown-item" >{userDetails.firstName}{userDetails.lastName}</span></li>
-            <li><span class="dropdown-item" >user: {userDetails.role}</span></li>
+          <ul className="dropdown-menu " aria-labelledby="navbarDropdown">
+            <li><span className="dropdown-item" >Name:{userDetails.firstName}{userDetails.lastName}</span></li>
+            <li><span className="dropdown-item" >user: {userDetails.role === 1 ? 'Admin' : 'User'}</span></li>
 
-            <li><button class="dropdown-item" onClick={handlelogout}>Log Out</button></li>
+            <div className='text-center'><button className="btn btn-primary " onClick={handlelogout}>Log Out</button></div>
             {/* <li><hr class="dropdown-divider"></li> */}
             {/* <li><a class="dropdown-item" href="#">Something else here</a></li> */}
           </ul>

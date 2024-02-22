@@ -28,3 +28,12 @@ display: flex;
     margin-left: 5%;
 }
 
+.topnav .dropdown
+{
+    right: 80px;
+    
+}
+.topnav .dropdown button
+{
+text-align: center;
+}
