@@ -1,7 +1,6 @@
 *,*::after,*::before{
     box-sizing: border-box;
     text-transform: capitalize;
-    
   }
   
   
@@ -17,9 +16,8 @@
     border: none;
     background: #f1f1f1;
     border-radius: 10px;
-    
   }
-  
+
   .login 
   input[type=text]:focus, input[type=password]:focus {
     background-color: #ddd;
@@ -80,3 +78,19 @@
       width: 100%;
     }
   }
+
+  .password-container{
+    display: flex;
+    align-items: center;
+    
+  }
+  .password-container img {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    right: 130px;
+    margin-bottom: 15px;
+  }
+
+
+  

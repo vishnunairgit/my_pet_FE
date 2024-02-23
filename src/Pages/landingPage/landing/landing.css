@@ -1,7 +1,6 @@
 *,*::after,*::before{
     box-sizing: border-box;
     text-transform: capitalize;
-    
 }
 * {box-sizing: border-box}
 
@@ -14,38 +13,32 @@ padding: 0%;
 }
 .landingPage .main {
     display: flex;
-    justify-content:space-around;
-    flex-direction:row;
-    height: 100vh;
-    padding: 100px;
+    /* justify-content:space-around; */
+    /* flex-direction:row; */
+    /* height: 100vh; */
+    padding: 50px;
     align-items: center;
     
+    
 }
-/* .landingPage.signupStyle .main {
-    padding: 100px;
-    align-items: center;
-} */
-
-  
 .landingPage .text-pet 
 {
     font-size: 28px;
     font-family: Helvetica, Arial, sans-serif;
     display: block;
     color: black;
+    padding: 50px;
     
 }
-
-/* .landingPage .text-pet.pet-words 
-{
-    text-align: center;
-  padding: 70px 0;
-}  */
-
 
 
 .landingPage .rightside
 {
 display:inline-block;
+width: 70%;
 }
 
+.setloginsignup .SignUp-pet-words{
+
+    font-size: 5px;
+}
