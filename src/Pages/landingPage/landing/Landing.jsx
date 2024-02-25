@@ -9,8 +9,6 @@ function Landing() {
 
   return (
        <>
-
-       
        <div className={`landingPage ${loginsignup === 'SignUp' ? 'signupStyle' : ''}`} style={{ backgroundImage: `url(${landingIMG})` }}>
        <div className={'landingPage' } style={{ backgroundImage: `url(${landingIMG})` }}>
 
