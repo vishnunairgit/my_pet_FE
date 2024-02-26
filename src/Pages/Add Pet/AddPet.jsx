@@ -230,7 +230,7 @@ function AddPet() {
             <div className="row">
               <div className="col-25">
                 <label htmlFor="Name">
-                  NAME <span className="mandatory-indicator">*</span>
+                  NAME 
                 </label>
               </div>
 
@@ -251,7 +251,7 @@ function AddPet() {
             <div className="row">
               <div className="col-25">
                 <label htmlFor="date of birth">
-                  DATE OF BIRTH <span className="mandatory-indicator">*</span>
+                  DATE OF BIRTH 
                 </label>
               </div>
               <div className="col-75">
@@ -270,7 +270,7 @@ function AddPet() {
             <div className="row">
               <div className="col-25">
                 <label htmlFor="Price">
-                  PRICE<span className="mandatory-indicator">*</span>
+                  PRICE
                 </label>
               </div>
               <div className="col-75">
@@ -288,7 +288,7 @@ function AddPet() {
             <div className="row">
               <div className="col-25">
                 <label htmlFor="Colour ">
-                  Colour <span className="mandatory-indicator">*</span>
+                  Colour 
                 </label>
               </div>
               <div className="col-75">

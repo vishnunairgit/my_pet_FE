@@ -6,7 +6,7 @@ import TopNavbar from '../TopNavbar/TopNavbar';
 import Sidenavbar from '../sideNavbar/Sidenavbar';
 import PetDog from '../../PetDog/PetDog/PetDog';
 import './home.css'
-import PetCat from '../../PetCat/PetCat';
+import PetCat from '../../PetCat/PetCat/PetCat';
 import PetBired from '../../PetBired/PetBired';
 import PetFish from '../../PetFish/PetFish';
 import OtherPets from '../../OtherPet/OtherPets';
@@ -18,6 +18,7 @@ import FIleViewPage from '../../PetDog/petViewPage/FileViewPage/FIleViewPage';
 import MyBooking from '../../PetDog/mybooking/MyBooking';
 import { UserAuth, AdminAuth } from '../../../Authorization/Authorization';
 import EditPet from '../../Add Pet/editPet/EditPet';
+import CatAdopt from '../../PetCat/catAdoptPage/CatAdoptCard';
 
 const Home = () => {
   return (
@@ -35,6 +36,9 @@ const Home = () => {
             <Route path="/SinglePetViewPage/:id" element={<PetViewPage/>} />
             <Route path="/fIleViewPage/:id" element={<FIleViewPage/>} />
             <Route path="/mybooking" element={<MyBooking/>} />
+            <Route path="/cats" element={<PetCat />} />
+            <Route path="/catAdopt" element={<CatAdopt />} />
+
           </Route>
 
           {/* Protected routes for admin */}
@@ -45,7 +49,6 @@ const Home = () => {
           </Route>
 {/* EditPet */}
           {/* Routes accessible to all users */}
-          <Route path="/cats" element={<PetCat />} />
           <Route path="/birds" element={<PetBired />} />
           <Route path="/fish" element={<PetFish />} />
           <Route path="/otherPets" element={<OtherPets />} />

@@ -1,0 +1,68 @@
+
+.catcards {
+    width: 48% !important;
+    height:fit-content;
+    padding-top: 20px;
+    box-shadow: 9px 20px 5px rgb(37, 26, 37);     
+}
+.catcards .card
+{
+background-color: #d0e1f9      ;
+}
+
+
+.catcards .img-fluid
+{
+    height: 200px;
+    width: 500px;
+    padding: 10px;
+    /* border-radius: 20px; */
+}
+.catcards .mb-2{
+    margin-bottom: 0 !important;
+
+   
+}
+.catcards .card-body
+{
+    text-align: left;
+    /* background-color: blue; */
+
+}
+/* .Dogcards .col-md-4 {
+    width: 50%;
+
+} */
+
+
+/* .Dogcards .leftsidecol-md-6
+{
+    text-align: left;
+    width: 30%;
+} */
+.catcards .rightsidecol-md-6
+{
+    /* text-align: left; */
+    /* width: 70%; */
+}
+
+.catcards .info-item {
+    /* display: flex; */
+     /* margin-bottom: px;  */
+    /* Adjust the margin as needed */ 
+  }
+  
+.catcards .label {
+    min-width: 100px; /* Adjust the width as needed */
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  /* .value {
+    flex-grow: 1;
+  } */
+.row>* {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
