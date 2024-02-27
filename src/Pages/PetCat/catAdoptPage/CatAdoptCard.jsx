@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './catAdoptcard.css'
+import { GetAllPetCat } from '../../../API/PetAPI';
 
 function CatAdoptCard() {
+
+  const allPetcat = GetAllPetCat();
+
+  
+
+  console.log(allPetcat);
+
+
+
   return (
     
     <div className="catcards">
