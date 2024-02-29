@@ -14,7 +14,6 @@ getMyBookingData()
 
 const getMyBookingData =async ()=>{
     try {
-        
         const response =await AxiosInstance.get('/users/getMyBookingData')
         debugger
         setmyBoookings(response.data)
