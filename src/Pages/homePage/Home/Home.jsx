@@ -18,7 +18,7 @@ import FIleViewPage from '../../PetDog/petViewPage/FileViewPage/FIleViewPage';
 import MyBooking from '../../PetDog/mybooking/MyBooking';
 import { UserAuth, AdminAuth } from '../../../Authorization/Authorization';
 import EditPet from '../../Add Pet/editPet/EditPet';
-import CatAdopt from '../../PetCat/catAdoptPage/CatAdoptCard';
+import CatAdopt from '../../PetCat/catAdopt/CatAdopt';
 
 const Home = () => {
   return (
@@ -38,6 +38,9 @@ const Home = () => {
             <Route path="/mybooking" element={<MyBooking/>} />
             <Route path="/cats" element={<PetCat />} />
             <Route path="/catAdopt" element={<CatAdopt />} />
+
+
+            {/* CatAdopt */}
 
           </Route>
 

@@ -1,34 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CatAdoptCard from '../catAdoptPage/CatAdoptCard'
 import './catAdopt.css'
-import AxiosInstance from '../../../config/AxiosInstance'
+import CatAPI from '../../../API/PetAPI';
 
 function CatAdopt() {
 
-  const [AllPetCat, setAllPetCat] = useState([ ])
+  const { allPetCat } = CatAPI.useFetchAllPetCat();
 
-  useEffect(() => {
 
-    fetchAllPetCat();
+  // const [AllPetCat, setAllPetCat] = useState([])
 
-  },[])
+  // useEffect(() => {
+  //   fetchAllPetCat();
+  // },[]);
 
-  const fetchAllPetCat = ()=>{
-    AxiosInstance.get('users/getAllDogPetsData', {params:{petType:'CAT'} })
-    .then((response)=>{
-      debugger
-      setAllPetCat(response.data)
-      console.log(response.data,'----------response.data-----');
-    })
-    .catch((err)=>{
-      debugger
-      if (err.response.data.message === 'unauthorized user') {
-        localStorage.clear();
-        navigate('/')
-      }
-console.log(err);
-    })
-  }
+  // const fetchAllPetCat = ()=>{
+  //   AxiosInstance.get('users/GetAllPetCat', {params:{petType:'CAT'} })
+  //   .then((response)=>{
+  //     debugger
+  //     setAllPetCat(response.data)
+  //     console.log(response.data,'----------response.data-----');
+  //   })
+  //   .catch((err)=>{
+  //     debugger
+  //     console.error(err);
+
+  //     if (err.response.data.message === 'unauthorized user') {
+  //       localStorage.clear();
+  //       // navigate('/')
+  //     }
+  //   });
+  // }
+
+
+
 
   // const fetchAllPetCat = async () => {
   //   try {
@@ -45,7 +50,9 @@ console.log(err);
     <>
     <div className='catAdoption row '>
 
-      {AllPetCat.map((petCat) => (<  CatAdoptCard key={petCat._id} allcatData={petCat} /> ))}
+    {allPetCat.map((petCat) => (<CatAdoptCard  allcatData = {petCat} />))}
+
+      {/* {AllPetCat.map((petCat) => (<  CatAdoptCard key={petCat._id} allcatData={petCat} /> ))} */}
 
     </div>
     </>

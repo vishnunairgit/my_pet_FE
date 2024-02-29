@@ -21,14 +21,15 @@ function DogAdoption() {
 console.log();
   
   useEffect(() => {
-    getAllDogPetsData();
+    fetchAllPetDog();
   },[]);
 
-  const getAllDogPetsData = () => {
-    AxiosInstance.get("/users/getAllDogPetsData")
+  const fetchAllPetDog = () => {
+    AxiosInstance.get("/users/GetAllPetDog", {params:{petType:'DOG'}} )
       .then((response) => {
         // debugger;
         setpetDogData(response.data);
+
         dispatch(setpetDetails(response.data));
         
         console.log(response.data,'------response.data-----');

@@ -1,5 +1,6 @@
 import React, { } from 'react'
 import './catAdoptcard.css'
+import { BASE_URL } from '../../../constants/BaseUrl'
 // import { GetAllPetCat } from '../../../API/PetAPI';
 
 function CatAdoptCard({ allcatData }) {
@@ -13,7 +14,7 @@ function CatAdoptCard({ allcatData }) {
           <div className="row g-0 ">
             <div className="col-md-4">
               <img
-                //   src={`${BASE_URL}/petFiles/${propspetDogData.petThumbUpload}`}
+                  src={`${BASE_URL}/petFiles/${allcatData.petThumbUpload}`}
                 className="img-fluid rounded-start"
                 alt="..."
               />

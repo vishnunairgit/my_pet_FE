@@ -13,11 +13,11 @@ function PetCarousel() {
   const [petCarousaldata, setpetCarousaldata] = useState({ })
   // 
   useEffect(() => {
-    getAllDogPetsData();
+    getAllPetsData();
   }, []);
 
-  const getAllDogPetsData= () => {
-    AxiosInstance.get("/users/getAllDogPetsData")
+  const getAllPetsData= () => {
+    AxiosInstance.get("/users/getAllPetsData")
       .then((response) => {
         // debugger;
         setpetCarousaldata(response.data);
