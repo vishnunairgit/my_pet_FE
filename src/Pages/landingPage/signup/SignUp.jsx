@@ -64,7 +64,8 @@ const handieUserSignUp=()=>{
 
   try{
     // debugger
-    axios.post(`${BASE_URL}/auth/signUp`,signUpData).then((res)=>{
+    axios.post(`${BASE_URL}/auth/signUp`,signUpData)
+    .then((res)=>{
       // debugger
       console.log(res);
       if(res.data.message==='signUp successful'){
