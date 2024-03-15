@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './addpet.css'
 
 function AddPet() {
-  const [petType, setpetType] = useState("");
+  const [petType, setpetType] = useState('');
   const [breeds, setbreeds] = useState([]);
   const navigate = useNavigate()
   

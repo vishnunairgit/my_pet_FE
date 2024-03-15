@@ -20,6 +20,9 @@ function TopNavbar() {
   const handlemybooking = ()=>{
     navigate('/mybooking')
   }
+  const handleAddGrooming = ()=>{
+    navigate('/petGrooming')
+  }
    const handlelogout = () =>{
     localStorage.clear()
     navigate('/')
@@ -41,6 +44,15 @@ function TopNavbar() {
        { userDetails.role === 1 &&  <li className="nav-item">
           <div className="nav-link active" aria-current="page" onClick={handleAddPet}>Add pet</div>
         </li>}
+
+        { userDetails.role === 1 && 
+        <li className="nav-item">
+         <div className="nav-link active" aria-current="page" onClick={handleAddGrooming}>Add Grooming</div>
+
+          
+        </li>
+        
+        }
 
         <li className="nav-item">
           <div className="nav-link" onClick={handlemybooking}>My Booking</div>

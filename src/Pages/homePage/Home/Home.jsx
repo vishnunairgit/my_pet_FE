@@ -19,6 +19,7 @@ import MyBooking from '../../PetDog/mybooking/MyBooking';
 import { UserAuth, AdminAuth } from '../../../Authorization/Authorization';
 import EditPet from '../../Add Pet/editPet/EditPet';
 import CatAdopt from '../../PetCat/catAdopt/CatAdopt';
+import PetGrooming from '../../petGrooming/PetGrooming';
 
 const Home = () => {
   return (
@@ -46,8 +47,9 @@ const Home = () => {
 
           {/* Protected routes for admin */}
           <Route element={<AdminAuth/>}>
-            <Route path="/addpet" element={<AddPet/>} />
-            <Route path="/editPet/:id" element={<EditPet/>} />
+            <Route path="/addpet" element={<AddPet />} />
+            <Route path="/editPet/:id" element={<EditPet />} />
+            <Route path="/petGrooming" element={<PetGrooming />} />
 
           </Route>
 {/* EditPet */}
