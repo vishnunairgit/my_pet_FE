@@ -2,8 +2,12 @@
 
 import React, { useState } from 'react';
 import AxiosInstance from '../../config/AxiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function PetGrooming() {
+    const navigate =useNavigate()
+
+    
     const [addgrooming, setaddgrooming] = useState({
         petgroomingpackage: '',
         GroomingSesssion: [], // Change to an array to hold multiple sessions
@@ -11,7 +15,7 @@ function PetGrooming() {
         Duration: '',
     });
 
-    const [GroomingSesssion, setGroomingSesssion] = useState([])
+    // const [GroomingSesssion, setGroomingSesssion] = useState([])
 
     const handlePackages = (e) => {
       const selectedPackage = e.target.value;
@@ -35,29 +39,7 @@ function PetGrooming() {
           duration = '01 / 3 month';
       } else if (selectedPackage === 'PRIME') {
           GroomingSessions = [
-              'Bath',
-              'Teeth Brushing',
-              'Ear Cleaning',
-              'Nail Cutting'
-          ];
-          charge = '3500.00';
-          duration = '02 / 5 month';
-      } else if (selectedPackage === 'PRIME GOLD') {
-          GroomingSessions = [
-              'Bath',
-              'Teeth Brushing',
-              'Ear Cleaning',
-              'Nail Cutting',
-              'Eye Cleaning',
-              'Anal sac cleaning',
-              'Coat Conditioning',
-              'Hygiene Trim'
-          ];
-          charge = '8000.00';
-          duration = '05 / 8 month';
-      } else if (selectedPackage === 'PRIME DIAMOND') {
-          GroomingSessions = [
-              'Bath',
+            'Bath',
               'Teeth Brushing',
               'Ear Cleaning',
               'Nail Cutting',
@@ -66,6 +48,34 @@ function PetGrooming() {
               'Coat Conditioning',
               'Hygiene Trim',
               'De-Matting'
+          ];
+          charge = '3500.00';
+          duration = '02 / 5 month';
+      } else if (selectedPackage === 'PRIME GOLD') {
+          GroomingSessions = [
+            'Bath',
+            'Teeth Brushing',
+            'Ear Cleaning',
+            'Nail Cutting',
+            'Eye Cleaning',
+            'Anal sac cleaning',
+            'Coat Conditioning',
+            'Hygiene Trim',
+            'De-Matting'
+          ];
+          charge = '8000.00';
+          duration = '05 / 8 month';
+      } else if (selectedPackage === 'PRIME DIAMOND') {
+          GroomingSessions = [
+            'Bath',
+            'Teeth Brushing',
+            'Ear Cleaning',
+            'Nail Cutting',
+            'Eye Cleaning',
+            'Anal sac cleaning',
+            'Coat Conditioning',
+            'Hygiene Trim',
+            'De-Matting'
           ];
           charge = '15000.00';
           duration = '10 / 1 year';
@@ -96,7 +106,10 @@ function PetGrooming() {
     const handleSubmitpetGrooming = () => {
         AxiosInstance.post('/admin/addGrooming', addgrooming)
             .then((response) => {
-                console.log(response);
+                // console.log(response);
+                alert('Pet Grooming data added successfully')
+                navigate('/dog')
+
             })
             .catch((error) => {
                 console.log(error);
@@ -148,9 +161,10 @@ function PetGrooming() {
                                             type="text"
                                             value={point}
                                             // value={addgrooming.GroomingSesssion}
-                                            name={GroomingSesssion}
+                                            // name={GroomingSesssion}
                                             onChange={(e) => {
-                                                handlegroomingSection(e, index);
+                                                handlegrooming(e)
+                                                // handlegroomingSection(e, index);
                                             }}
                                             required
                                         />
