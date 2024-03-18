@@ -20,6 +20,7 @@ import { UserAuth, AdminAuth } from '../../../Authorization/Authorization';
 import EditPet from '../../Add Pet/editPet/EditPet';
 import CatAdopt from '../../PetCat/catAdopt/CatAdopt';
 import PetGrooming from '../../petGrooming/PetGrooming';
+import DogGrooming from '../../PetDog/dogGrooming/dogGrooming/DogGrooming';
 
 const Home = () => {
   return (
@@ -36,9 +37,11 @@ const Home = () => {
             <Route path="/dogAdoption" element={<DogAdoption/>} />
             <Route path="/SinglePetViewPage/:id" element={<PetViewPage/>} />
             <Route path="/fIleViewPage/:id" element={<FIleViewPage/>} />
+            <Route path="/dogGrooming" element={<DogGrooming />} />
             <Route path="/mybooking" element={<MyBooking/>} />
             <Route path="/cats" element={<PetCat />} />
             <Route path="/catAdopt" element={<CatAdopt />} />
+
 
 
             {/* CatAdopt */}

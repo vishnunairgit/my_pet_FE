@@ -13,6 +13,9 @@ const navigate =useNavigate()
 const DogAdoption=()=>{
   navigate('/dogAdoption')
 }
+const DogGrooming = ()=>{
+  navigate('/dogGrooming')
+}
   
   return (
     <>
@@ -60,7 +63,7 @@ const DogAdoption=()=>{
                 Dog adoption is one of the best ways to clear the 
                 shelters and enrich your life with a furry new friend, love dog.
                 </p>
-                <button className=" btn btn-primary" >BOOK NOW</button>
+                <button className=" btn btn-primary" onClick={DogGrooming} >BOOK NOW</button>
               </div>
             </div>
           </div>
